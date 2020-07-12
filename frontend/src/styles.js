@@ -25,6 +25,9 @@ const useStyles = () => {
         },
         loginButton: {
             color: "white",
+        },
+        formControl: {
+            padding: theme.spacing(2)
         }
     }))
 }

@@ -36,7 +36,7 @@ const SignUp = () => {
         <>
         <Button className={classes.loginButton} onClick={handleClickOpen}>Signup</Button>
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Login</DialogTitle>
+            <DialogTitle>SignUp</DialogTitle>
             <DialogContent>
                 <TextField
                     autoFocus

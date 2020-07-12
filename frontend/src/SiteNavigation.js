@@ -4,6 +4,9 @@ import { Link as RouterLink } from 'react-router-dom'
 import { useStyles } from './styles';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import BookIcon from '@material-ui/icons/Book';
+import CreateIcon from '@material-ui/icons/Create';
 
 const SiteNavigation = () => {
     const classes = useStyles()()
@@ -40,10 +43,17 @@ const SiteNavigation = () => {
                     <ListItemLink
                         to="/cv"
                         primary="My CV"
+                        icon={<AssignmentIndIcon />}
                     />
                     <ListItemLink
                         to="/blogs"
                         primary="Blogs"
+                        icon={<BookIcon />}
+                    />
+                    <ListItemLink
+                        to="/createblog"
+                        primary="Create Blog"
+                        icon={<CreateIcon />}
                     />
                 </List>
             </Drawer>

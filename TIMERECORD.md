@@ -7,3 +7,4 @@
 | 12.7.2020  | 1        |Apply Material-UI|
 |            | 1.5      |Create Login Dialog, setup basic Redux|
 |            | 2        |Refactor Login, add Sign Up|
+|            | 2        |Add createblog component, add icon into drawer|
