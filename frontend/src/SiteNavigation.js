@@ -2,6 +2,7 @@ import React, { useMemo, forwardRef } from 'react';
 import { AppBar, Toolbar, Grid, Typography, Drawer, Divider, ListItem, ListItemIcon, ListItemText, List } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom'
 import { useStyles } from './styles';
+import Login from './components/Login';
 
 const SiteNavigation = () => {
     const classes = useStyles()()
@@ -17,7 +18,7 @@ const SiteNavigation = () => {
                         </Grid>
                         <Grid item xs={6} container spacing={3} direction="row" justify="center" alignItems="center">
                             <Grid item>
-                                <span>User info</span>
+                                <Login />
                             </Grid>
                             <Grid item>
                                 <span>Login/Logout</span>

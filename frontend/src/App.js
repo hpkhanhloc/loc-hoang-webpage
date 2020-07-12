@@ -6,6 +6,7 @@ import { useStyles, theme } from './styles'
 import SiteNavigation from "./SiteNavigation"
 import Resume from './components/Resume';
 import Blog from './components/Blog';
+import Login from './components/Login';
 
 function App() {
   const classes = useStyles()()
@@ -23,6 +24,9 @@ function App() {
               </Route>
               <Route path="/blogs">
                 <Blog />
+              </Route>
+              <Route path="/login">
+                <Login />
               </Route>
             </Switch>
           </main>
