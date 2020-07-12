@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Grid, Typography, Drawer, Divider, ListItem, ListItemI
 import { Link as RouterLink } from 'react-router-dom'
 import { useStyles } from './styles';
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 
 const SiteNavigation = () => {
     const classes = useStyles()()
@@ -21,7 +22,7 @@ const SiteNavigation = () => {
                                 <Login />
                             </Grid>
                             <Grid item>
-                                <span>Login/Logout</span>
+                                <SignUp />
                             </Grid>
                         </Grid>
                     </Grid>

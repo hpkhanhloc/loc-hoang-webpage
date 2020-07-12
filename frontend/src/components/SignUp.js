@@ -2,9 +2,14 @@ import React, { useState } from 'react'
 import { TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@material-ui/core'
 import { useStyles } from '../styles'
 
-const Login = () => {
+const SignUp = () => {
     const [open, setOpen] = useState(false)
-    const [credential, setCredential] = useState({email: '', password: ''})
+    const [profile, setProfile] = useState({
+        email: '',
+        password: '',
+        firstname: '',
+        lastname: ''
+    })
     const classes = useStyles()()
 
     const handleClickOpen = () => {
@@ -15,23 +20,42 @@ const Login = () => {
         console.log('Closed')
     }
     const handleChange = (event) => {
-        setCredential(
-            {...credential,
-            [event.target.id]: event.target.value}
+        setProfile(
+            {
+                ...profile,
+                [event.target.id]: event.target.value}
         )
     }
-    const handleLogin = (event) => {
+    const handleSignUp = (event) => {
         event.preventDefault()
-        console.log(credential)
-        console.log(`Signed In ${credential.email} ${credential.password}`)
+        console.log(`Signed Up`)
+        console.log(profile)
         setOpen(false)
     }
     return (
         <>
-        <Button className={classes.loginButton} onClick={handleClickOpen}>Login</Button>
+        <Button className={classes.loginButton} onClick={handleClickOpen}>Signup</Button>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Login</DialogTitle>
             <DialogContent>
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="firstname"
+                    label="First name"
+                    onChange={handleChange}
+                    required
+                    fullWidth
+                />
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="lastname"
+                    label="Last name"
+                    onChange={handleChange}
+                    required
+                    fullWidth
+                />
                 <TextField
                     autoFocus
                     margin="dense"
@@ -56,8 +80,8 @@ const Login = () => {
                 <Button onClick={handleClose} color="primary">
                     Cancel
                 </Button>
-                <Button onClick={handleLogin} color="primary">
-                    Login
+                <Button onClick={handleSignUp} color="primary">
+                    Sign Up
                 </Button>
             </DialogActions>
         </Dialog>
@@ -65,4 +89,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default SignUp
