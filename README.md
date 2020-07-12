@@ -14,4 +14,4 @@ Features:
 - Firebase handle backend and user rights
 - Firebase should store image and other data
 
-Time record: https://github.com/hpkhanhloc/loc-hoang-webpage/TIMERECORD.md
+Time record: [TIME RECORD](TIMERECORD.md)
