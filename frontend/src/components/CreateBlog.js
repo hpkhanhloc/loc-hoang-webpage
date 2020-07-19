@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { TextField, Button, Container, Paper, FormControl, Box, Typography } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { createBlog } from '../actions/blogActions'
 import { useStyles } from '../styles'
 
 const CreateBlog = () => {
     const [newBlog, setNewBlog] = useState({title: '', content: ''})
     const history = useHistory()
+    const dispatch = useDispatch()
     const classes = useStyles()()
 
     const handleChange = (event) => {
@@ -22,6 +25,7 @@ const CreateBlog = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log(`New Blog ${newBlog.title} ${newBlog.content}`)
+        dispatch(createBlog(newBlog))
         history.push("/blogs")
     }
     return (

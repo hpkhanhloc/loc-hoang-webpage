@@ -43,7 +43,12 @@ const initState = {
 }
 
 const blogReducer = (state = initState, action) => {
-    return state
+    switch (action.type) {
+        case 'CREATE_BLOG':
+            return [...state.blogs, action.blog]
+        default:
+            return state
+    }
 }
 
 export default blogReducer
