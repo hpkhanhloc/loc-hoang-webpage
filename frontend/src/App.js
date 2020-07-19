@@ -5,8 +5,9 @@ import { useStyles, theme } from './styles'
 
 import SiteNavigation from "./SiteNavigation"
 import Resume from './components/Resume';
-import Blog from './components/Blog';
+import Blogs from './components/Blogs';
 import CreateBlog from './components/CreateBlog';
+import Blog from './components/Blog';
 
 function App() {
   const classes = useStyles()()
@@ -23,10 +24,13 @@ function App() {
                 <Resume />
               </Route>
               <Route path="/blogs">
-                <Blog />
+                <Blogs />
               </Route>
               <Route path="/createblog">
                 <CreateBlog />
+              </Route>
+              <Route exact path="/blog/:id">
+                <Blog />
               </Route>
             </Switch>
           </main>

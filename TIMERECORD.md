@@ -9,3 +9,4 @@
 |            | 2        |Refactor Login, add Sign Up|
 |            | 2        |Add createblog component, add icon into drawer|
 | 19.7.2020  | 0.5      |Create Firebase project and config|
+|            | 1.5      |Dummy blog data, show blog summary in blog list, create blog detail page|

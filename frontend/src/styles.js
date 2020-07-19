@@ -28,6 +28,10 @@ const useStyles = () => {
         },
         formControl: {
             padding: theme.spacing(2)
+        },
+        blogCard: {
+            margin: theme.spacing(2),
+            height: 200
         }
     }))
 }
