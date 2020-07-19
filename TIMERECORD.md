@@ -8,3 +8,4 @@
 |            | 1.5      |Create Login Dialog, setup basic Redux|
 |            | 2        |Refactor Login, add Sign Up|
 |            | 2        |Add createblog component, add icon into drawer|
+| 19.7.2020  | 0.5      |Create Firebase project and config|
