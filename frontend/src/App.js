@@ -1,16 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import { ThemeProvider, CssBaseline } from '@material-ui/core';
-import { useStyles, theme } from './styles'
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ThemeProvider, CssBaseline } from "@material-ui/core";
+import { useStyles, theme } from "./styles";
 
-import SiteNavigation from "./SiteNavigation"
-import Resume from './components/Resume';
-import Blogs from './components/Blogs';
-import CreateBlog from './components/CreateBlog';
-import Blog from './components/Blog';
+import SiteNavigation from "./SiteNavigation";
+import Resume from "./components/Resume";
+import Blogs from "./components/Blogs";
+import CreateBlog from "./components/CreateBlog";
+import Blog from "./components/Blog";
 
 function App() {
-  const classes = useStyles()()
+  const classes = useStyles()();
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -23,7 +23,7 @@ function App() {
               <Route path="/cv">
                 <Resume />
               </Route>
-              <Route path="/blogs">
+              <Route exact path="/blogs">
                 <Blogs />
               </Route>
               <Route path="/createblog">
@@ -37,7 +37,7 @@ function App() {
         </div>
       </ThemeProvider>
     </Router>
-  )
+  );
 }
 
 export default App;
