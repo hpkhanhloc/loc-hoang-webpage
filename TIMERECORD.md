@@ -13,3 +13,4 @@
 |           | 0.5  | Add Thunk, add dispatch create blog                                                             |
 | 9.9.2020  |  4   | Connect firebase, firestore with app                                                            |
 | 10.9.2020 | 0.5  | Connect firebase, firestore with app                                                            |
+| 12.9.2020 | 2.5  | Fix detail blog crash when reload page                                                          |

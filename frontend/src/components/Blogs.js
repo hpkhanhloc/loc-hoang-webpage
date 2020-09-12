@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   Container,
@@ -29,11 +28,6 @@ const Blogs = () => {
 
 const BlogSummary = ({ blog }) => {
   const classes = useStyles()();
-  const history = useHistory();
-
-  const handleOnClick = (event) => {
-    history.push(`/blog/${blog.id}`);
-  };
 
   return (
     <Container>
@@ -45,7 +39,7 @@ const BlogSummary = ({ blog }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={handleOnClick}>
+          <Button size="small" href={`/blog/${blog.id}`}>
             Read more
           </Button>
         </CardActions>
