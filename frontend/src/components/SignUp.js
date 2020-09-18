@@ -8,15 +8,18 @@ import {
   DialogActions,
 } from "@material-ui/core";
 import { useStyles } from "../styles";
+import { useDispatch } from "react-redux";
+import { signUp } from "../actions/authAction";
 
 const SignUp = () => {
   const [open, setOpen] = useState(false);
-  const [profile, setProfile] = useState({
+  const [newUser, setNewUser] = useState({
     email: "",
     password: "",
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
   });
+  const dispatch = useDispatch();
   const classes = useStyles()();
 
   const handleClickOpen = () => {
@@ -24,18 +27,16 @@ const SignUp = () => {
   };
   const handleClose = () => {
     setOpen(false);
-    console.log("Closed");
   };
   const handleChange = (event) => {
-    setProfile({
-      ...profile,
+    setNewUser({
+      ...newUser,
       [event.target.id]: event.target.value,
     });
   };
   const handleSignUp = (event) => {
     event.preventDefault();
-    console.log(`Signed Up`);
-    console.log(profile);
+    dispatch(signUp(newUser));
     setOpen(false);
   };
   return (
@@ -49,7 +50,7 @@ const SignUp = () => {
           <TextField
             autoFocus
             margin="dense"
-            id="firstname"
+            id="firstName"
             label="First name"
             onChange={handleChange}
             required
@@ -58,7 +59,7 @@ const SignUp = () => {
           <TextField
             autoFocus
             margin="dense"
-            id="lastname"
+            id="lastName"
             label="Last name"
             onChange={handleChange}
             required

@@ -17,3 +17,4 @@
 | 18.9.2020 | 1.5  | Add login action connect to firebase                                                            |
 |           | 1.5  | Add logout and splash screen                                                                    |
 |           | 0.5  | Protect route with un-authentication user                                                       |
+|           |  1   | Add signup user with firebase                                                                   |
