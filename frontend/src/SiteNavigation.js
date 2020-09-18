@@ -19,12 +19,11 @@ import Logout from "./components/Logout";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import BookIcon from "@material-ui/icons/Book";
 import CreateIcon from "@material-ui/icons/Create";
-import { useSelector } from "react-redux";
-import { isEmpty, isLoaded } from "react-redux-firebase";
 
-const SiteNavigation = () => {
+const SiteNavigation = (props) => {
+  const { credential } = props;
   const classes = useStyles()();
-  const auth = useSelector((state) => state.firebase.auth);
+
   return (
     <>
       <AppBar className={classes.appBar}>
@@ -44,7 +43,7 @@ const SiteNavigation = () => {
               justify="center"
               alignItems="center"
             >
-              {isLoaded(auth) && !isEmpty(auth) ? (
+              {credential.uid ? (
                 <Grid item>
                   <Logout />
                 </Grid>
@@ -72,12 +71,16 @@ const SiteNavigation = () => {
         <Divider />
         <List>
           <ListItemLink to="/cv" primary="My CV" icon={<AssignmentIndIcon />} />
-          <ListItemLink to="/blogs" primary="Blogs" icon={<BookIcon />} />
-          <ListItemLink
-            to="/createblog"
-            primary="Create Blog"
-            icon={<CreateIcon />}
-          />
+          {credential.uid && (
+            <>
+              <ListItemLink to="/blogs" primary="Blogs" icon={<BookIcon />} />
+              <ListItemLink
+                to="/createblog"
+                primary="Create Blog"
+                icon={<CreateIcon />}
+              />
+            </>
+          )}
         </List>
       </Drawer>
     </>

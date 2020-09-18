@@ -29,21 +29,21 @@ function App() {
         <ThemeProvider theme={theme}>
           <div className={classes.root}>
             <CssBaseline />
-            <SiteNavigation />
+            <SiteNavigation credential={auth} />
             <main className={classes.content}>
               <div className={classes.toolBar} />
               <Switch>
                 <Route path="/cv">
-                  <Resume />
+                  <Resume credential={auth} />
                 </Route>
                 <Route exact path="/blogs">
-                  <Blogs />
+                  <Blogs credential={auth} />
                 </Route>
                 <Route path="/createblog">
-                  <CreateBlog />
+                  <CreateBlog credential={auth} />
                 </Route>
                 <Route exact path="/blog/:id">
-                  <Blog />
+                  <Blog credential={auth} />
                 </Route>
               </Switch>
             </main>

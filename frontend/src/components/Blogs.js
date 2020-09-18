@@ -11,10 +11,16 @@ import {
 } from "@material-ui/core";
 import { useFirestoreConnect } from "react-redux-firebase";
 import { useStyles } from "../styles";
+import { Redirect } from "react-router-dom";
 
-const Blogs = () => {
+const Blogs = (props) => {
+  const { credential } = props;
   useFirestoreConnect([{ collection: "blogs" }]);
   const blogs = useSelector((state) => state.firestore.ordered.blogs);
+
+  if (!credential.uid) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div>

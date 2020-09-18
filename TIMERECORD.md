@@ -16,3 +16,4 @@
 | 12.9.2020 | 2.5  | Fix detail blog crash when reload page                                                          |
 | 18.9.2020 | 1.5  | Add login action connect to firebase                                                            |
 |           | 1.5  | Add logout and splash screen                                                                    |
+|           | 0.5  | Protect route with un-authentication user                                                       |

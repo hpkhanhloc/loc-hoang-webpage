@@ -9,13 +9,19 @@ import {
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
+import { Redirect } from "react-router-dom";
 
-const Blog = () => {
+const Blog = (props) => {
+  const { credential } = props;
   const id = useParams().id;
   useFirestoreConnect([`/blogs/${id}`]);
   const blog = useSelector(
     ({ firestore: { data } }) => data.blogs && data.blogs[id]
   );
+  if (!credential.uid) {
+    return <Redirect to="/" />;
+  }
+
   if (!isLoaded(blog)) {
     return <LinearProgress />;
   }
