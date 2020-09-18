@@ -19,9 +19,10 @@ import Logout from "./components/Logout";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import BookIcon from "@material-ui/icons/Book";
 import CreateIcon from "@material-ui/icons/Create";
+import UserInfo from "./components/UserInfo";
 
 const SiteNavigation = (props) => {
-  const { credential } = props;
+  const { credential, profile } = props;
   const classes = useStyles()();
 
   return (
@@ -44,9 +45,14 @@ const SiteNavigation = (props) => {
               alignItems="center"
             >
               {credential.uid ? (
-                <Grid item>
-                  <Logout />
-                </Grid>
+                <>
+                  <Grid item>
+                    <UserInfo profile={profile} />
+                  </Grid>
+                  <Grid item>
+                    <Logout />
+                  </Grid>
+                </>
               ) : (
                 <>
                   <Grid item>

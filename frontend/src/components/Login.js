@@ -38,36 +38,38 @@ const Login = () => {
         Login
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Login</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            label="Email"
-            type="email"
-            onChange={handleChange}
-            required
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            id="password"
-            label="Password"
-            type="password"
-            onChange={handleChange}
-            required
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleLogin} color="primary">
-            Login
-          </Button>
-        </DialogActions>
+        <form>
+          <DialogTitle>Login</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="email"
+              label="Email"
+              type="email"
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="password"
+              label="Password"
+              type="password"
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button type="submit" onClick={handleLogin} color="primary">
+              Login
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </>
   );

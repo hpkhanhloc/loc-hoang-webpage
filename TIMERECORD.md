@@ -18,3 +18,5 @@
 |           | 1.5  | Add logout and splash screen                                                                    |
 |           | 0.5  | Protect route with un-authentication user                                                       |
 |           |  1   | Add signup user with firebase                                                                   |
+|           | 0.5  | Add userinfo view in navigation bar                                                             |
+| 19.9.2020 | 0.5  | Add userinfo view in navigation bar                                                             |

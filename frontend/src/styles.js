@@ -1,4 +1,5 @@
 import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
+import { red } from "@material-ui/core/colors";
 
 const useStyles = () => {
   return makeStyles((theme) => ({
@@ -36,6 +37,16 @@ const useStyles = () => {
     splashScreen: {
       zIndex: theme.zIndex.drawer + 1,
       color: "#fff",
+    },
+    card: {
+      height: 64,
+      backgroundColor: "transparent",
+      border: 0,
+      boxShadow: "none",
+      color: "white",
+    },
+    avatar: {
+      backgroundColor: red[500],
     },
   }));
 };

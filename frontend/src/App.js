@@ -19,17 +19,21 @@ import { isLoaded } from "react-redux-firebase";
 function App() {
   const classes = useStyles()();
   const auth = useSelector((state) => state.firebase.auth);
+  const profile = useSelector((state) => state.firebase.profile);
   return (
     <Router>
-      {!isLoaded(auth) ? (
-        <Backdrop className={classes.splashScreen} open={!isLoaded(auth)}>
+      {!isLoaded(auth) || !isLoaded(profile) ? (
+        <Backdrop
+          className={classes.splashScreen}
+          open={!isLoaded(auth) || !isLoaded(profile)}
+        >
           <CircularProgress size={100} />
         </Backdrop>
       ) : (
         <ThemeProvider theme={theme}>
           <div className={classes.root}>
             <CssBaseline />
-            <SiteNavigation credential={auth} />
+            <SiteNavigation credential={auth} profile={profile} />
             <main className={classes.content}>
               <div className={classes.toolBar} />
               <Switch>

@@ -45,54 +45,56 @@ const SignUp = () => {
         Signup
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>SignUp</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="firstName"
-            label="First name"
-            onChange={handleChange}
-            required
-            fullWidth
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="lastName"
-            label="Last name"
-            onChange={handleChange}
-            required
-            fullWidth
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            label="Email"
-            type="email"
-            onChange={handleChange}
-            required
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            id="password"
-            label="Password"
-            type="password"
-            onChange={handleChange}
-            required
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSignUp} color="primary">
-            Sign Up
-          </Button>
-        </DialogActions>
+        <form>
+          <DialogTitle>SignUp</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="firstName"
+              label="First name"
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="lastName"
+              label="Last name"
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="email"
+              label="Email"
+              type="email"
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="password"
+              label="Password"
+              type="password"
+              onChange={handleChange}
+              required
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
+            </Button>
+            <Button type="submit" onClick={handleSignUp} color="primary">
+              Sign Up
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </>
   );
