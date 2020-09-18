@@ -34,7 +34,7 @@ const Login = () => {
   };
   return (
     <>
-      <Button className={classes.loginButton} onClick={handleClickOpen}>
+      <Button className={classes.authButton} onClick={handleClickOpen}>
         Login
       </Button>
       <Dialog open={open} onClose={handleClose}>

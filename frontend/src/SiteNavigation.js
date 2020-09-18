@@ -15,11 +15,12 @@ import { Link as RouterLink } from "react-router-dom";
 import { useStyles } from "./styles";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import Logout from "./components/Logout";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import BookIcon from "@material-ui/icons/Book";
 import CreateIcon from "@material-ui/icons/Create";
 import { useSelector } from "react-redux";
-import { isLoaded } from "react-redux-firebase";
+import { isEmpty, isLoaded } from "react-redux-firebase";
 
 const SiteNavigation = () => {
   const classes = useStyles()();
@@ -43,7 +44,11 @@ const SiteNavigation = () => {
               justify="center"
               alignItems="center"
             >
-              {isLoaded(auth) && (
+              {isLoaded(auth) && !isEmpty(auth) ? (
+                <Grid item>
+                  <Logout />
+                </Grid>
+              ) : (
                 <>
                   <Grid item>
                     <Login />
