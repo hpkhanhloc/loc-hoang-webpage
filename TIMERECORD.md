@@ -20,3 +20,4 @@
 |           |  1   | Add signup user with firebase                                                                   |
 |           | 0.5  | Add userinfo view in navigation bar                                                             |
 | 19.9.2020 | 0.5  | Add userinfo view in navigation bar                                                             |
+|           |  1   | Style: Improve blog UI                                                                          |

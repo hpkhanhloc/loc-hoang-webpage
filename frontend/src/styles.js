@@ -32,7 +32,6 @@ const useStyles = () => {
     },
     blogCard: {
       margin: theme.spacing(2),
-      height: 200,
     },
     splashScreen: {
       zIndex: theme.zIndex.drawer + 1,

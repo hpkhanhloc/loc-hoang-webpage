@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useParams } from "react-router-dom";
 import {
   Container,
@@ -6,6 +7,7 @@ import {
   Box,
   Typography,
   LinearProgress,
+  Divider,
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
@@ -30,11 +32,20 @@ const Blog = (props) => {
       <Paper>
         <Box p={2}>
           {isEmpty(blog) ? (
-            <Typography variant="h6">Can not find blog!</Typography>
+            <Typography variant="h5">Can not find blog!</Typography>
           ) : (
             <>
-              <Typography variant="h6">{blog.title}</Typography>
+              <Typography variant="h5">{blog.title}</Typography>
+              <Divider style={{ marginTop: 16, marginBottom: 8 }} />
               <Typography variant="body2">{blog.content}</Typography>
+              <Divider style={{ marginTop: 16, marginBottom: 8 }} />
+              <Typography
+                variant="subtitle2"
+                color="textSecondary"
+              >{`Posted by ${blog.authorFirstName} ${blog.authorLastName}`}</Typography>
+              <Typography variant="subtitle2" color="textSecondary">
+                {moment(blog.createdAt.toDate()).calendar()}
+              </Typography>
             </>
           )}
         </Box>

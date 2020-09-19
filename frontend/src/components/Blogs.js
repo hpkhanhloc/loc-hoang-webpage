@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useSelector } from "react-redux";
 import {
   Container,
@@ -38,14 +39,19 @@ const BlogSummary = ({ blog }) => {
   return (
     <Container>
       <Card className={classes.blogCard}>
-        <CardHeader title={blog.title} />
+        <CardHeader
+          title={blog.title}
+          subheader={`Posted by ${blog.authorFirstName} ${
+            blog.authorLastName
+          } - ${moment(blog.createdAt.toDate()).calendar()}`}
+        />
         <CardContent>
           <Typography variant="body2">
-            {blog.content.substring(0, 250) + "..."}
+            {blog.content.substring(0, 500) + "..."}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" href={`/blog/${blog.id}`}>
+          <Button size="small" color="primary" href={`/blog/${blog.id}`}>
             Read more
           </Button>
         </CardActions>
