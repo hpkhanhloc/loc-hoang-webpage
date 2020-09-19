@@ -22,3 +22,4 @@
 | 19.9.2020 | 0.5  | Add userinfo view in navigation bar                                                             |
 |           |  1   | Style: Improve blog UI                                                                          |
 |           |  1   | Update firestore security rule, connect firebase cloud function                                 |
+|           |  3   | Add cloud functions to create notification when user signup and create blog                     |

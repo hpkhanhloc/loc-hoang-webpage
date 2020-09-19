@@ -5,6 +5,7 @@ import {
   CssBaseline,
   CircularProgress,
   Backdrop,
+  Grid,
 } from "@material-ui/core";
 import { useStyles, theme } from "./styles";
 
@@ -13,6 +14,7 @@ import Resume from "./components/Resume";
 import Blogs from "./components/Blogs";
 import CreateBlog from "./components/CreateBlog";
 import Blog from "./components/Blog";
+import Notifications from "./components/Notifications";
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
 
@@ -20,6 +22,7 @@ function App() {
   const classes = useStyles()();
   const auth = useSelector((state) => state.firebase.auth);
   const profile = useSelector((state) => state.firebase.profile);
+
   return (
     <Router>
       {!isLoaded(auth) || !isLoaded(profile) ? (
@@ -36,20 +39,27 @@ function App() {
             <SiteNavigation credential={auth} profile={profile} />
             <main className={classes.content}>
               <div className={classes.toolBar} />
-              <Switch>
-                <Route path="/cv">
-                  <Resume credential={auth} />
-                </Route>
-                <Route exact path="/blogs">
-                  <Blogs credential={auth} />
-                </Route>
-                <Route path="/createblog">
-                  <CreateBlog credential={auth} />
-                </Route>
-                <Route exact path="/blog/:id">
-                  <Blog credential={auth} />
-                </Route>
-              </Switch>
+              <Grid container justify="space-evenly">
+                <Grid item md={9}>
+                  <Switch>
+                    <Route exact path="/">
+                      <Resume credential={auth} />
+                    </Route>
+                    <Route exact path="/blogs">
+                      <Blogs credential={auth} />
+                    </Route>
+                    <Route path="/createblog">
+                      <CreateBlog credential={auth} />
+                    </Route>
+                    <Route exact path="/blog/:id">
+                      <Blog credential={auth} />
+                    </Route>
+                  </Switch>
+                </Grid>
+                <Grid item md={3}>
+                  <Notifications />
+                </Grid>
+              </Grid>
             </main>
           </div>
         </ThemeProvider>

@@ -76,7 +76,7 @@ const SiteNavigation = (props) => {
         <div className={classes.toolBar} />
         <Divider />
         <List>
-          <ListItemLink to="/cv" primary="My CV" icon={<AssignmentIndIcon />} />
+          <ListItemLink to="/" primary="My CV" icon={<AssignmentIndIcon />} />
           {credential.uid && (
             <>
               <ListItemLink to="/blogs" primary="Blogs" icon={<BookIcon />} />

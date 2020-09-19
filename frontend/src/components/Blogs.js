@@ -9,6 +9,7 @@ import {
   CardContent,
   CardActions,
   Button,
+  Box,
 } from "@material-ui/core";
 import { useFirestoreConnect } from "react-redux-firebase";
 import { useStyles } from "../styles";
@@ -16,7 +17,9 @@ import { Redirect } from "react-router-dom";
 
 const Blogs = (props) => {
   const { credential } = props;
-  useFirestoreConnect([{ collection: "blogs" }]);
+  useFirestoreConnect([
+    { collection: "blogs", orderBy: ["createdAt", "desc"] },
+  ]);
   const blogs = useSelector((state) => state.firestore.ordered.blogs);
 
   if (!credential.uid) {
@@ -24,12 +27,12 @@ const Blogs = (props) => {
   }
 
   return (
-    <div>
+    <Box mt={-2}>
       {blogs &&
         blogs.map((blog) => {
           return <BlogSummary blog={blog} key={blog.id} />;
         })}
-    </div>
+    </Box>
   );
 };
 
