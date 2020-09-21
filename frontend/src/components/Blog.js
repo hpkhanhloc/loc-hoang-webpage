@@ -51,6 +51,9 @@ const Blog = (props) => {
                   <Typography variant="h5">{blog.title}</Typography>
                 </Box>
                 <Box>
+                  <Button color="primary" href={`/edit/blog/${id}`}>
+                    Edit
+                  </Button>
                   <Button color="primary" onClick={handleDeleteBlog}>
                     Delete
                   </Button>

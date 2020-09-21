@@ -17,6 +17,7 @@ import Blog from "./components/Blog";
 import Notifications from "./components/Notifications";
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
+import EditBlog from "./components/EditBlog";
 
 function App() {
   const classes = useStyles()();
@@ -53,6 +54,9 @@ function App() {
                     </Route>
                     <Route exact path="/blog/:id">
                       <Blog credential={auth} />
+                    </Route>
+                    <Route exact path="/edit/blog/:id">
+                      <EditBlog credential={auth} />
                     </Route>
                   </Switch>
                 </Grid>

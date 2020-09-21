@@ -11,6 +11,7 @@ export const createBlog = (blog) => {
         authorLastName: profile.lastName,
         authorId: authorId,
         createdAt: new Date(),
+        lastChanged: new Date(),
       })
       .then(() => {
         dispatch({ type: "CREATE_BLOG", blog });
@@ -35,6 +36,23 @@ export const deleteBlog = (blogId) => {
       .catch((err) => {
         console.log(err);
         dispatch({ type: "DELETE_BLOG_ERROR" }, err);
+      });
+  };
+};
+
+export const updateBlog = (blogId, editedBlog) => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+    firestore
+      .collection("blogs")
+      .doc(blogId)
+      .update({ ...editedBlog, lastChanged: new Date() })
+      .then(() => {
+        dispatch({ type: "UPDATE_BLOG", blogId });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({ type: "UPDATE_BLOG_ERROR" }, err);
       });
   };
 };
