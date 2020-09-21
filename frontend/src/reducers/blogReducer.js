@@ -6,6 +6,12 @@ const blogReducer = (state = {}, action) => {
     case "CREATE_BLOG_ERROR":
       console.log("Create blog error", action.err);
       return state;
+    case "DELETE_BLOG":
+      console.log("delete blog", action.blogId);
+      return state;
+    case "DELETE_BLOG_ERROR":
+      console.log("delete blog error", action.err);
+      return state;
     default:
       return state;
   }

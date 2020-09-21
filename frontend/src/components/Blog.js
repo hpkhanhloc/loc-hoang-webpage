@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
   Container,
   Paper,
@@ -8,10 +8,12 @@ import {
   Typography,
   LinearProgress,
   Divider,
+  Button,
 } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
 import { Redirect } from "react-router-dom";
+import { deleteBlog } from "../actions/blogActions";
 
 const Blog = (props) => {
   const { credential } = props;
@@ -20,6 +22,15 @@ const Blog = (props) => {
   const blog = useSelector(
     ({ firestore: { data } }) => data.blogs && data.blogs[id]
   );
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleDeleteBlog = (event) => {
+    event.preventDefault();
+    dispatch(deleteBlog(id));
+    history.push("/blogs");
+  };
+
   if (!credential.uid) {
     return <Redirect to="/" />;
   }
@@ -35,7 +46,16 @@ const Blog = (props) => {
             <Typography variant="h5">Can not find blog!</Typography>
           ) : (
             <>
-              <Typography variant="h5">{blog.title}</Typography>
+              <Box display="flex">
+                <Box flexGrow={1}>
+                  <Typography variant="h5">{blog.title}</Typography>
+                </Box>
+                <Box>
+                  <Button color="primary" onClick={handleDeleteBlog}>
+                    Delete
+                  </Button>
+                </Box>
+              </Box>
               <Divider style={{ marginTop: 16, marginBottom: 8 }} />
               <Typography variant="body2">{blog.content}</Typography>
               <Divider style={{ marginTop: 16, marginBottom: 8 }} />

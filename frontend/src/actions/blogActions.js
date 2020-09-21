@@ -21,3 +21,20 @@ export const createBlog = (blog) => {
       });
   };
 };
+
+export const deleteBlog = (blogId) => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+    firestore
+      .collection("blogs")
+      .doc(blogId)
+      .delete()
+      .then(() => {
+        dispatch({ type: "DELETE_BLOG", blogId });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({ type: "DELETE_BLOG_ERROR" }, err);
+      });
+  };
+};
