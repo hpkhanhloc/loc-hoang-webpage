@@ -24,3 +24,4 @@
 |           |  1   | Update firestore security rule, connect firebase cloud function                                 |
 |           |  3   | Add cloud functions to create notification when user signup and create blog                     |
 | 21.9.2020 | 1.5  | Add delete and update blog functions                                                            |
+| 24.9.2020 |  2   | Research how to use rich text editor                                                            |
