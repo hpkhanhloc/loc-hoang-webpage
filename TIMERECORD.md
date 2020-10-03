@@ -25,3 +25,4 @@
 |           |  3   | Add cloud functions to create notification when user signup and create blog                     |
 | 21.9.2020 | 1.5  | Add delete and update blog functions                                                            |
 | 24.9.2020 |  2   | Research how to use rich text editor                                                            |
+| 3.10.2020 |  3   | Add rich text editor component that can upload image to stotage in firebase                     |

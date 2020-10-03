@@ -12,6 +12,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createBlog } from "../actions/blogActions";
 import { useStyles } from "../styles";
+import TextEditor from "./TextEditor";
 
 const CreateBlog = (props) => {
   const { credential } = props;
@@ -33,6 +34,10 @@ const CreateBlog = (props) => {
     console.log(`New Blog ${newBlog.title} ${newBlog.content}`);
     dispatch(createBlog(newBlog));
     history.push("/blogs");
+  };
+  const handleOnSave = (event) => {
+    event.preventDefault();
+    console.log("save");
   };
 
   if (!credential.uid) {
@@ -72,6 +77,7 @@ const CreateBlog = (props) => {
               fullWidth
             />
           </FormControl>
+          <TextEditor handleOnSave={handleOnSave} />
         </Box>
         <Box m={2} display="flex" flexDirection="row" justifyContent="center">
           <Button

@@ -47,6 +47,10 @@ const useStyles = () => {
     avatar: {
       backgroundColor: red[500],
     },
+    uploadImagePopover: {
+      padding: 10,
+      maxWidth: 350,
+    },
   }));
 };
 
@@ -69,6 +73,21 @@ const theme = createMuiTheme({
     },
     success: {
       main: "#4caf50",
+    },
+  },
+  overrides: {
+    MUIRichTextEditor: {
+      root: {
+        margin: 16,
+      },
+      toolbar: {
+        alignment: "center",
+      },
+      editor: {
+        border: "1px solid grey",
+        borderRadius: 5,
+        padding: 16,
+      },
     },
   },
 });
