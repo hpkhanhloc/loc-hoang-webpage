@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateBlog } from "../actions/blogActions";
 import { useStyles } from "../styles";
 import { isEmpty, isLoaded, useFirestoreConnect } from "react-redux-firebase";
+import TextEditor from "./TextEditor";
 
 const EditBlog = (props) => {
   const { credential } = props;
@@ -26,15 +27,15 @@ const EditBlog = (props) => {
   const dispatch = useDispatch();
   const classes = useStyles()();
 
-  const handleChange = (event) => {
-    setEditedBlog({ ...editedBlog, [event.target.id]: event.target.value });
+  const handleOnChangeTitle = (event) => {
+    setEditedBlog({ ...editedBlog, title: event.target.value });
   };
-  const handleCancel = (event) => {
+  const handleOnCancel = (event) => {
     event.preventDefault();
     setEditedBlog({ title: "", content: "" });
     history.push(`/blog/${id}`);
   };
-  const handleSubmit = (event) => {
+  const handleOnSubmit = (event) => {
     event.preventDefault();
     dispatch(updateBlog(id, editedBlog));
     history.push(`/blog/${id}`);
@@ -61,7 +62,7 @@ const EditBlog = (props) => {
                 id="title"
                 label="Title"
                 variant="outlined"
-                onChange={handleChange}
+                onChange={handleOnChangeTitle}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -69,25 +70,11 @@ const EditBlog = (props) => {
                 fullWidth
               />
             </FormControl>
-            <FormControl className={classes.formControl} fullWidth>
-              <TextField
-                id="content"
-                label="Content"
-                variant="outlined"
-                onChange={handleChange}
-                multiline={true}
-                rows={10}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                defaultValue={blog.content}
-                fullWidth
-              />
-            </FormControl>
+            <TextEditor blog={blog} setBlog={setEditedBlog} />
           </Box>
           <Box m={2} display="flex" flexDirection="row" justifyContent="center">
             <Button
-              onClick={handleCancel}
+              onClick={handleOnCancel}
               variant="contained"
               color="primary"
               style={{ marginRight: 16 }}
@@ -95,7 +82,7 @@ const EditBlog = (props) => {
               Cancel
             </Button>
             <Button
-              onClick={handleSubmit}
+              onClick={handleOnSubmit}
               variant="contained"
               color="primary"
               style={{ marginRight: 16 }}

@@ -13,31 +13,33 @@ import { useDispatch } from "react-redux";
 import { createBlog } from "../actions/blogActions";
 import { useStyles } from "../styles";
 import TextEditor from "./TextEditor";
+import { convertToRaw, EditorState } from "draft-js";
 
 const CreateBlog = (props) => {
   const { credential } = props;
-  const [newBlog, setNewBlog] = useState({ title: "", content: "" });
+  const [newBlog, setNewBlog] = useState({
+    title: "",
+    content: JSON.stringify(
+      convertToRaw(EditorState.createEmpty().getCurrentContent())
+    ),
+  });
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles()();
 
-  const handleChange = (event) => {
-    setNewBlog({ ...newBlog, [event.target.id]: event.target.value });
+  const handleOnChangeTitle = (event) => {
+    setNewBlog({ ...newBlog, title: event.target.value });
   };
-  const handleCancel = (event) => {
+  const handleOnCancel = (event) => {
     event.preventDefault();
     setNewBlog({ title: "", content: "" });
     history.push("/blogs");
   };
-  const handleSubmit = (event) => {
+  const handleOnSubmit = (event) => {
     event.preventDefault();
     console.log(`New Blog ${newBlog.title} ${newBlog.content}`);
     dispatch(createBlog(newBlog));
     history.push("/blogs");
-  };
-  const handleOnSave = (event) => {
-    event.preventDefault();
-    console.log("save");
   };
 
   if (!credential.uid) {
@@ -56,32 +58,18 @@ const CreateBlog = (props) => {
               id="title"
               label="Title"
               variant="outlined"
-              onChange={handleChange}
+              onChange={handleOnChangeTitle}
               InputLabelProps={{
                 shrink: true,
               }}
               fullWidth
             />
           </FormControl>
-          <FormControl className={classes.formControl} fullWidth>
-            <TextField
-              id="content"
-              label="Content"
-              variant="outlined"
-              onChange={handleChange}
-              multiline={true}
-              rows={10}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              fullWidth
-            />
-          </FormControl>
-          <TextEditor handleOnSave={handleOnSave} />
+          <TextEditor blog={newBlog} setBlog={setNewBlog} />
         </Box>
         <Box m={2} display="flex" flexDirection="row" justifyContent="center">
           <Button
-            onClick={handleCancel}
+            onClick={handleOnCancel}
             variant="contained"
             color="primary"
             style={{ marginRight: 16 }}
@@ -89,7 +77,7 @@ const CreateBlog = (props) => {
             Cancel
           </Button>
           <Button
-            onClick={handleSubmit}
+            onClick={handleOnSubmit}
             variant="contained"
             color="primary"
             style={{ marginRight: 16 }}

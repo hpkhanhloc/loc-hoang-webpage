@@ -84,9 +84,18 @@ const theme = createMuiTheme({
         alignment: "center",
       },
       editor: {
-        border: "1px solid grey",
+        border: (props) => (props.border ? props.border : ""),
         borderRadius: 5,
         padding: 16,
+        minHeight: (props) => (props.minHeight ? props.minHeight : ""),
+        "&:hover": {
+          cursor: "text",
+        },
+      },
+      editorContainer: {
+        margin: 0,
+        padding: 0,
+        minHeight: 260,
       },
     },
   },

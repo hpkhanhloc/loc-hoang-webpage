@@ -50,7 +50,7 @@ const BlogSummary = ({ blog }) => {
         />
         <CardContent>
           <Typography variant="body2">
-            {blog.content.substring(0, 500) + "..."}
+            {JSON.parse(blog.content).blocks[0].text.substring(0, 500) + "..."}
           </Typography>
         </CardContent>
         <CardActions>

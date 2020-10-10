@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
 import { Redirect } from "react-router-dom";
 import { deleteBlog } from "../actions/blogActions";
+import MUIRichTextEditor from "mui-rte";
 
 const Blog = (props) => {
   const { credential } = props;
@@ -60,7 +61,11 @@ const Blog = (props) => {
                 </Box>
               </Box>
               <Divider style={{ marginTop: 16, marginBottom: 8 }} />
-              <Typography variant="body2">{blog.content}</Typography>
+              <MUIRichTextEditor
+                defaultValue={blog.content}
+                readOnly={true}
+                toolbar={false}
+              />
               <Divider style={{ marginTop: 16, marginBottom: 8 }} />
               <Typography
                 variant="subtitle2"
