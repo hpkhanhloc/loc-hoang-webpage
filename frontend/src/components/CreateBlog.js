@@ -71,7 +71,7 @@ const CreateBlog = (props) => {
           <Button
             onClick={handleOnCancel}
             variant="contained"
-            color="primary"
+            color="secondary"
             style={{ marginRight: 16 }}
           >
             Cancel

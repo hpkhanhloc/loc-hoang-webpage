@@ -1,5 +1,6 @@
-import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
+import { makeStyles, createMuiTheme, withStyles } from "@material-ui/core/styles";
 import { red } from "@material-ui/core/colors";
+import MuiListItem from "@material-ui/core/ListItem";
 
 const useStyles = () => {
   return makeStyles((theme) => ({
@@ -9,7 +10,7 @@ const useStyles = () => {
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
       position: "fixed",
-      background: "linear-gradient(135deg, #0019af, #0068F0)",
+      background: "linear-gradient(135deg, #0fb9b1, #3fc7c0)",
       color: "#fff",
     },
     drawer: {
@@ -25,7 +26,8 @@ const useStyles = () => {
       padding: theme.spacing(3),
     },
     authButton: {
-      color: "white",
+      color: "black",
+      fontWeight: "bold"
     },
     formControl: {
       padding: theme.spacing(2),
@@ -51,28 +53,40 @@ const useStyles = () => {
       padding: 10,
       maxWidth: 350,
     },
+    deleteButton: {
+      color: "#eb3b5a"
+    },
   }));
 };
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#90caf9",
+      main: "#0fb9b1",
     },
     secondary: {
-      main: "#f48fb1",
+      main: "#f7b731",
     },
     error: {
-      main: "#f44336",
+      main: "#eb3b5a",
     },
     warning: {
-      main: "#ff9800",
+      main: "#fa8231",
     },
     info: {
-      main: "#2196f3",
+      main: "#2d98da",
     },
     success: {
-      main: "#4caf50",
+      main: "#20bf6b",
+    },
+  },
+  typography: {
+    fontFamily: 'Nunito',
+    h6: {
+      fontWeight: "bold",
+    },
+    button: {
+      fontWeight: "bold",
     },
   },
   overrides: {
@@ -101,4 +115,16 @@ const theme = createMuiTheme({
   },
 });
 
-export { useStyles, theme };
+const ListItem = withStyles({
+  root: {
+    "&$selected": {
+      color: "#2d98da",
+    },
+    "&:hover": {
+      backgroundColor: "#d1d8e0",
+    }
+  },
+  selected: {}
+})(MuiListItem)
+
+export { useStyles, theme, ListItem };

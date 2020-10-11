@@ -1,4 +1,4 @@
-import React, { useMemo, forwardRef } from "react";
+import React, { useMemo, forwardRef, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -6,13 +6,12 @@ import {
   Typography,
   Drawer,
   Divider,
-  ListItem,
   ListItemIcon,
   ListItemText,
   List,
 } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import { useStyles } from "./styles";
+import { useStyles, ListItem } from "./styles";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Logout from "./components/Logout";
@@ -23,6 +22,7 @@ import UserInfo from "./components/UserInfo";
 
 const SiteNavigation = (props) => {
   const { credential, profile } = props;
+  const [selectedIndex, setSelectedIndex] = useState(1)
   const classes = useStyles()();
 
   return (
@@ -31,7 +31,7 @@ const SiteNavigation = (props) => {
         <Toolbar>
           <Grid container justify="space-between" alignItems="center">
             <Grid item xs={6}>
-              <Typography variant="h6" noWrap>
+              <Typography variant="h6" color="textPrimary" noWrap>
                 Loc Hoang's web page
               </Typography>
             </Grid>
@@ -76,14 +76,16 @@ const SiteNavigation = (props) => {
         <div className={classes.toolBar} />
         <Divider />
         <List>
-          <ListItemLink to="/" primary="My CV" icon={<AssignmentIndIcon />} />
+          <ListItemLink index={1} to="/" primary="My CV" icon={<AssignmentIndIcon />} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
           {credential.uid && (
             <>
-              <ListItemLink to="/blogs" primary="Blogs" icon={<BookIcon />} />
+              <ListItemLink index={2} to="/blogs" primary="Blogs" icon={<BookIcon />} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
               <ListItemLink
+                index={3}
                 to="/createblog"
                 primary="Create Blog"
-                icon={<CreateIcon />}
+                icon={<CreateIcon/>}
+                selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}
               />
             </>
           )}
@@ -93,7 +95,10 @@ const SiteNavigation = (props) => {
   );
 };
 
-const ListItemLink = ({ to, primary, icon }) => {
+const ListItemLink = ({ index, to, primary, icon, selectedIndex, setSelectedIndex }) => {
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index)
+  }
   const renderLink = useMemo(
     () =>
       forwardRef((itemProps, ref) => (
@@ -104,9 +109,9 @@ const ListItemLink = ({ to, primary, icon }) => {
 
   return (
     <li>
-      <ListItem button component={renderLink}>
+      <ListItem button component={renderLink} selected={selectedIndex === index} onClick={event => handleListItemClick(event, index)}>
         {icon && <ListItemIcon>{icon}</ListItemIcon>}
-        <ListItemText primary={primary} />
+        <ListItemText primary={<Typography variant="button">{primary}</Typography>}/>
       </ListItem>
     </li>
   );

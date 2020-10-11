@@ -17,7 +17,7 @@ const UserInfo = (props) => {
             </Avatar>
           }
           title={
-            <Typography variant="body2">
+            <Typography variant="button" color="textPrimary">
               {`${profile.firstName} ${profile.lastName}`}
             </Typography>
           }

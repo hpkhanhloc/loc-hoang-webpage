@@ -87,7 +87,7 @@ const SignUp = () => {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleClose} color="secondary">
               Cancel
             </Button>
             <Button type="submit" onClick={handleSignUp} color="primary">
