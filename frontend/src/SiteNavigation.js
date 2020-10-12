@@ -9,6 +9,8 @@ import {
   ListItemIcon,
   ListItemText,
   List,
+  Card,
+  CardMedia,
 } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import { useStyles, ListItem } from "./styles";
@@ -19,6 +21,7 @@ import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import BookIcon from "@material-ui/icons/Book";
 import CreateIcon from "@material-ui/icons/Create";
 import UserInfo from "./components/UserInfo";
+import AppBarLogo from "./static/images/logo.png"
 
 const SiteNavigation = (props) => {
   const { credential, profile } = props;
@@ -31,9 +34,9 @@ const SiteNavigation = (props) => {
         <Toolbar>
           <Grid container justify="space-between" alignItems="center">
             <Grid item xs={6}>
-              <Typography variant="h6" color="textPrimary" noWrap>
-                Loc Hoang's web page
-              </Typography>
+              <Card style={{display: "flex", background: "transparent", boxShadow: "none"}}>
+                <CardMedia style={{ height: 50, width: "auto", marginLeft: "4%"}} component="img" src={AppBarLogo} title="Appbar Logo" />
+              </Card>
             </Grid>
             <Grid
               item

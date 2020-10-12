@@ -29,3 +29,4 @@
 | 10.10.2020 |  6   | Refactor EditBlog, CreateBlog, TextEditor, UploadImagePopover                                   |
 | 11.10.2020 | 2.5  | Style: change colors for light theme                                                            |
 | 12.10.2020 |  2   | Style: design logo, change title                                                                |
+| 13.10.2020 | 0.5  | Style: changelogo, add logo to appbar                                                           |
