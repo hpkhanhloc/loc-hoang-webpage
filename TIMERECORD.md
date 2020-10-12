@@ -28,3 +28,4 @@
 | 3.10.2020  |  3   | Add rich text editor component that can upload image to stotage in firebase                     |
 | 10.10.2020 |  6   | Refactor EditBlog, CreateBlog, TextEditor, UploadImagePopover                                   |
 | 11.10.2020 | 2.5  | Style: change colors for light theme                                                            |
+| 12.10.2020 |  2   | Style: design logo, change title                                                                |
