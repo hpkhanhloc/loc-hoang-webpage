@@ -7,8 +7,6 @@ import BackupIcon from "@material-ui/icons/Backup";
 import UploadImagePopover from "./UploadImagePopover";
 import { uploadImage } from "./UploadImagePopover";
 
-import { theme } from "../styles";
-
 const TextEditor = (props) => {
   const ref = useRef(null);
   const [anchor, setAnchor] = useState(null);
@@ -29,7 +27,7 @@ const TextEditor = (props) => {
   };
 
   return (
-    <MuiThemeProvider theme={theme}>
+    <MuiThemeProvider>
       <UploadImagePopover
         anchor={anchor}
         onSubmit={(data, insert) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {
   ThemeProvider,
@@ -7,7 +7,7 @@ import {
   Backdrop,
   Grid,
 } from "@material-ui/core";
-import { useStyles, theme } from "./styles";
+import { useStyles, lightTheme, darkTheme } from "./styles";
 
 import SiteNavigation from "./SiteNavigation";
 import Resume from "./components/Resume";
@@ -23,6 +23,18 @@ function App() {
   const classes = useStyles()();
   const auth = useSelector((state) => state.firebase.auth);
   const profile = useSelector((state) => state.firebase.profile);
+  const [theme, setTheme] = useState(false);
+
+  useEffect(() => {
+    const localStorageTheme = localStorage.getItem("theme");
+    if (localStorageTheme) {
+      setTheme(JSON.parse(localStorageTheme));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(theme));
+  }, [theme]);
 
   return (
     <Router>
@@ -34,10 +46,15 @@ function App() {
           <CircularProgress size={100} />
         </Backdrop>
       ) : (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={theme ? lightTheme : darkTheme}>
           <div className={classes.root}>
             <CssBaseline />
-            <SiteNavigation credential={auth} profile={profile} />
+            <SiteNavigation
+              credential={auth}
+              profile={profile}
+              theme={theme}
+              setTheme={setTheme}
+            />
             <main className={classes.content}>
               <div className={classes.toolBar} />
               <Grid container justify="space-evenly">

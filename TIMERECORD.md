@@ -30,3 +30,5 @@
 | 11.10.2020 | 2.5  | Style: change colors for light theme                                                            |
 | 12.10.2020 |  2   | Style: design logo, change title                                                                |
 | 13.10.2020 | 0.5  | Style: changelogo, add logo to appbar                                                           |
+|            | 2.5  | Style: add dark theme                                                                           |
+| 14.10.2020 | 0.5  | Support toggle light theme and dark theme                                                       |

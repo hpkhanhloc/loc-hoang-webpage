@@ -15,7 +15,6 @@ import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
 import { Redirect } from "react-router-dom";
 import { deleteBlog } from "../actions/blogActions";
 import MUIRichTextEditor from "mui-rte";
-import { useStyles } from "../styles";
 
 const Blog = (props) => {
   const { credential } = props;
@@ -26,7 +25,6 @@ const Blog = (props) => {
   );
   const history = useHistory();
   const dispatch = useDispatch();
-  const classes = useStyles()();
 
   const handleDeleteBlog = (event) => {
     event.preventDefault();
@@ -54,10 +52,10 @@ const Blog = (props) => {
                   <Typography variant="h5">{blog.title}</Typography>
                 </Box>
                 <Box>
-                  <Button color="secondary" href={`/edit/blog/${id}`}>
+                  <Button color="primary" href={`/edit/blog/${id}`}>
                     Edit
                   </Button>
-                  <Button className={classes.deleteButton} onClick={handleDeleteBlog}>
+                  <Button color="secondary" onClick={handleDeleteBlog}>
                     Delete
                   </Button>
                 </Box>
