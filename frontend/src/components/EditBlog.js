@@ -70,7 +70,7 @@ const EditBlog = (props) => {
                 fullWidth
               />
             </FormControl>
-            <TextEditor blog={blog} setBlog={setEditedBlog} />
+            <TextEditor content={blog} setContent={setEditedBlog} />
           </Box>
           <Box m={2} display="flex" flexDirection="row" justifyContent="center">
             <Button

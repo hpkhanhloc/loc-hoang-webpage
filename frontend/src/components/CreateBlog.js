@@ -16,7 +16,7 @@ import TextEditor from "./TextEditor";
 import { convertToRaw, EditorState } from "draft-js";
 
 const CreateBlog = (props) => {
-  const { credential } = props;
+  const { credential, theme } = props;
   const [newBlog, setNewBlog] = useState({
     title: "",
     content: JSON.stringify(
@@ -65,7 +65,12 @@ const CreateBlog = (props) => {
               fullWidth
             />
           </FormControl>
-          <TextEditor blog={newBlog} setBlog={setNewBlog} />
+          <TextEditor
+            content={newBlog}
+            setContent={setNewBlog}
+            toolbar={true}
+            theme={theme}
+          />
         </Box>
         <Box m={2} display="flex" flexDirection="row" justifyContent="center">
           <Button

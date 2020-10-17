@@ -6,6 +6,7 @@ import BackupIcon from "@material-ui/icons/Backup";
 
 import UploadImagePopover from "./UploadImagePopover";
 import { uploadImage } from "./UploadImagePopover";
+import { darkTheme, lightTheme } from "../styles";
 
 const TextEditor = (props) => {
   const ref = useRef(null);
@@ -20,14 +21,14 @@ const TextEditor = (props) => {
   };
 
   const handleOnChange = (prop) => (event) => {
-    props.setBlog({
-      ...props.blog,
+    props.setContent({
+      ...props.content,
       [prop]: JSON.stringify(convertToRaw(event.getCurrentContent())),
     });
   };
 
   return (
-    <MuiThemeProvider>
+    <MuiThemeProvider theme={props.theme ? lightTheme : darkTheme}>
       <UploadImagePopover
         anchor={anchor}
         onSubmit={(data, insert) => {
@@ -38,7 +39,9 @@ const TextEditor = (props) => {
         }}
       />
       <MUIRichTextEditor
-        defaultValue={props.blog.content}
+        defaultValue={props.content.content}
+        toolbar={props.toolbar}
+        readOnly={props.readOnly ? props.readOnly : false}
         ref={ref}
         controls={[
           "title",

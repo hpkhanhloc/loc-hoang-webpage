@@ -61,13 +61,13 @@ function App() {
                 <Grid item md={9}>
                   <Switch>
                     <Route exact path="/">
-                      <Resume credential={auth} />
+                      <Resume credential={auth} theme={theme} />
                     </Route>
                     <Route exact path="/blogs">
                       <Blogs credential={auth} />
                     </Route>
                     <Route path="/createblog">
-                      <CreateBlog credential={auth} />
+                      <CreateBlog credential={auth} theme={theme} />
                     </Route>
                     <Route exact path="/blog/:id">
                       <Blog credential={auth} />

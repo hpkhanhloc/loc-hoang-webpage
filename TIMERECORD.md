@@ -32,3 +32,4 @@
 | 13.10.2020 | 0.5  | Style: changelogo, add logo to appbar                                                           |
 |            | 2.5  | Style: add dark theme                                                                           |
 | 14.10.2020 | 0.5  | Support toggle light theme and dark theme                                                       |
+| 17.10.2020 |  5   | Add resume components support rich text styling                                                 |
