@@ -33,3 +33,5 @@
 |            | 2.5  | Style: add dark theme                                                                           |
 | 14.10.2020 | 0.5  | Support toggle light theme and dark theme                                                       |
 | 17.10.2020 |  5   | Add resume components support rich text styling                                                 |
+| 22.10.2020 | 4.5  | Edit resume page                                                                                |
+| 23.10.2020 | 0.5  | Edit resume page (work from 19h30 22.10 to 0h30 23.10)                                          |

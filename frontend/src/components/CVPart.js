@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Container, Paper, Box, Button } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { useFirestoreConnect } from "react-redux-firebase";
 import TextEditor from "./TextEditor";
@@ -32,37 +32,34 @@ const CVPart = (props) => {
   };
 
   return (
-    <Container>
-      <Paper>
-        <Box p={2}>
-          {credential.uid && (
-            <Box display="flex" justifyContent="flex-end">
-              {edit ? (
-                <>
-                  <Button color="secondary" onClick={handleOnCancel}>
-                    Cancel
-                  </Button>
-                  <Button color="primary" onClick={handleOnSave}>
-                    Save
-                  </Button>
-                </>
-              ) : (
-                <Button color="primary" onClick={handleOnEdit}>
-                  Edit
-                </Button>
-              )}
-            </Box>
+    <Box>
+      {credential.uid && (
+        <Box display="flex" justifyContent="flex-end">
+          {edit ? (
+            <>
+              <Button color="secondary" onClick={handleOnCancel}>
+                Cancel
+              </Button>
+              <Button color="primary" onClick={handleOnSave}>
+                Save
+              </Button>
+            </>
+          ) : (
+            <Button color="primary" onClick={handleOnEdit}>
+              Edit
+            </Button>
           )}
-          <TextEditor
-            content={cvPart}
-            setContent={setEditedContent}
-            toolbar={edit}
-            readOnly={!edit}
-            theme={theme}
-          />
         </Box>
-      </Paper>
-    </Container>
+      )}
+      <TextEditor
+        content={cvPart}
+        setContent={setEditedContent}
+        toolbar={edit}
+        readOnly={!edit}
+        theme={theme}
+        minHeight={edit ? 200 : 0}
+      />
+    </Box>
   );
 };
 

@@ -80,8 +80,8 @@ const TextEditor = (props) => {
           },
         }}
         onChange={handleOnChange("content")}
-        border="1px solid grey"
-        minHeight={300}
+        border={props.border ? "1px solid grey" : ""}
+        minHeight={props.minHeight ? props.minHeight : 0}
       />
     </MuiThemeProvider>
   );

@@ -70,6 +70,8 @@ const CreateBlog = (props) => {
             setContent={setNewBlog}
             toolbar={true}
             theme={theme}
+            minHeight={300}
+            border={true}
           />
         </Box>
         <Box m={2} display="flex" flexDirection="row" justifyContent="center">

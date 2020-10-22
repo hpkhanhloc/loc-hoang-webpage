@@ -88,6 +88,12 @@ const lightTheme = createMuiTheme({
     h6: {
       fontWeight: "bold",
     },
+    h5: {
+      fontWeight: "bold",
+    },
+    subtitle1: {
+      fontWeight: "bold",
+    },
     button: {
       fontWeight: "bold",
     },
@@ -112,7 +118,7 @@ const lightTheme = createMuiTheme({
       editorContainer: {
         margin: 0,
         padding: 0,
-        minHeight: 260,
+        minHeight: (props) => (props.minHeight ? props.minHeight : ""),
       },
     },
   },
@@ -145,6 +151,12 @@ const darkTheme = createMuiTheme({
     h6: {
       fontWeight: "bold",
     },
+    h5: {
+      fontWeight: "bold",
+    },
+    subtitle1: {
+      fontWeight: "bold",
+    },
     button: {
       fontWeight: "bold",
     },
@@ -169,7 +181,7 @@ const darkTheme = createMuiTheme({
       editorContainer: {
         margin: 0,
         padding: 0,
-        minHeight: 260,
+        minHeight: (props) => (props.minHeight ? props.minHeight : ""),
       },
     },
   },

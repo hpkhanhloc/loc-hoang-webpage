@@ -148,6 +148,7 @@ export const uploadImage = async (file) => {
         height: 200,
         alignment: "left",
         type: "image",
+        display: "inline",
       },
     });
   });
