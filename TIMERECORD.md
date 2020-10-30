@@ -35,3 +35,4 @@
 | 17.10.2020 |  5   | Add resume components support rich text styling                                                 |
 | 22.10.2020 | 4.5  | Edit resume page                                                                                |
 | 23.10.2020 | 0.5  | Edit resume page (work from 19h30 22.10 to 0h30 23.10)                                          |
+| 30.10.2020 |  12  | Collect handle data, build machine learning model                                               |
