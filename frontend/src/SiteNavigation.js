@@ -24,6 +24,7 @@ import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import BookIcon from "@material-ui/icons/Book";
 import CreateIcon from "@material-ui/icons/Create";
 import UserInfo from "./components/UserInfo";
+import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo";
 import AppBarLightLogo from "./static/images/logo.png";
 import AppBarDarkLogo from "./static/images/logodark.png";
 
@@ -132,6 +133,14 @@ const SiteNavigation = (props) => {
                 to="/createblog"
                 primary="Create Blog"
                 icon={<CreateIcon />}
+                selectedIndex={selectedIndex}
+                setSelectedIndex={setSelectedIndex}
+              />
+              <ListItemLink
+                index={4}
+                to="/videos"
+                primary="Machine Learning Video Player"
+                icon={<FeaturedVideoIcon />}
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
               />

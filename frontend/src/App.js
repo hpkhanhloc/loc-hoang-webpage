@@ -18,6 +18,8 @@ import Notifications from "./components/Notifications";
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
 import EditBlog from "./components/EditBlog";
+import Videos from "./components/Videos";
+import Video from "./components/Video";
 
 function App() {
   const classes = useStyles()();
@@ -74,6 +76,12 @@ function App() {
                     </Route>
                     <Route exact path="/edit/blog/:id">
                       <EditBlog credential={auth} />
+                    </Route>
+                    <Route exact path="/videos">
+                      <Videos credential={auth} />
+                    </Route>
+                    <Route exact path="/video/:id">
+                      <Video credential={auth} />
                     </Route>
                   </Switch>
                 </Grid>
