@@ -20,6 +20,7 @@ const Video = (props) => {
   const video = useSelector(
     ({ firestore: { data } }) => data.videos && data.videos[id]
   );
+  const cv = window.cv;
 
   if (!credential.uid) {
     return <Redirect to="/" />;
@@ -37,6 +38,8 @@ const Video = (props) => {
     transport: "smooth",
     autoPlay: true,
   });
+
+  console.log(cv.getBuildInformation());
 
   return (
     <Container>

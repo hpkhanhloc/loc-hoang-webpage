@@ -21,7 +21,6 @@ const Videos = (props) => {
   if (!credential.uid) {
     return <Redirect to="/" />;
   }
-  console.log(videos);
 
   return (
     <Box m={2}>

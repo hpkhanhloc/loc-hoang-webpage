@@ -37,3 +37,4 @@
 | 23.10.2020 | 0.5  | Edit resume page (work from 19h30 22.10 to 0h30 23.10)                                          |
 | 30.10.2020 |  12  | Collect handle data, build machine learning model                                               |
 | 31.10.2020 |  2   | Create videos and video page                                                                    |
+|            | 3.5  | Import OpenCV, TensorflowJS into ReactJS (work from 21h to 0h30 01.11)                          |
