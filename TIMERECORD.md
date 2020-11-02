@@ -38,3 +38,4 @@
 | 30.10.2020 |  12  | Collect handle data, build machine learning model                                               |
 | 31.10.2020 |  2   | Create videos and video page                                                                    |
 |            | 3.5  | Import OpenCV, TensorflowJS into ReactJS (work from 21h to 0h30 01.11)                          |
+| 02.11.2020 | 1.5  | Import Machine Learning to Video component                                                      |
