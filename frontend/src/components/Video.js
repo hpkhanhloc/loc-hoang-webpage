@@ -30,7 +30,7 @@ const Video = (props) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    if (url) predictIntro(url, 10);
+    if (url) predictIntro(url, 15);
   }, [url]);
 
   const loadURL = async () => {
@@ -68,7 +68,7 @@ const Video = (props) => {
     const extractFrameAndPredict = async (maxSecond) => {
       console.log("start predict");
       let i = 0;
-      while (i < maxSecond) {
+      while (i <= maxSecond) {
         console.log("predict frame", i);
         video.currentTime = i;
         await new Promise((resolve) => (seekResolve = resolve));

@@ -22,7 +22,6 @@ const Login = () => {
   };
   const handleClose = () => {
     setOpen(false);
-    console.log("Closed");
   };
   const handleChange = (event) => {
     setCredential({ ...credential, [event.target.id]: event.target.value });
