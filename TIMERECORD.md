@@ -39,3 +39,4 @@
 | 31.10.2020 |  2   | Create videos and video page                                                                    |
 |            | 3.5  | Import OpenCV, TensorflowJS into ReactJS (work from 21h to 0h30 01.11)                          |
 | 02.11.2020 | 1.5  | Import Machine Learning to Video component                                                      |
+| 08.11.2020 |  11  | Extract frame from video and predict intro (work in many days)                                  |
