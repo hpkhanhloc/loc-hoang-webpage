@@ -30,7 +30,7 @@ const Video = (props) => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    if (url) predictIntro(url, 15);
+    if (url) predictIntro(url);
   }, [url]);
 
   const loadURL = async () => {
@@ -44,59 +44,57 @@ const Video = (props) => {
       .catch((error) => console.log(error));
   };
 
-  const predictIntro = async (url, maxSecond) => {
-    const video = document.createElement("video");
-    const videoBlob = await fetch(url).then((res) => res.blob());
-    const videoURL = URL.createObjectURL(videoBlob);
-    video.src = videoURL;
-    const canvas = canvasRef.current;
-    let seekResolve;
+  const predictIntro = async (url) => {
+    return new Promise(async (resolve) => {
+      const video = document.createElement("video");
+      const videoBlob = await fetch(url).then((res) => res.blob());
+      const videoURL = URL.createObjectURL(videoBlob);
+      const canvas = canvasRef.current;
+      let seekResolve;
 
-    const loadModel = async () => {
-      const model = await tf.loadLayersModel("/assets/model/model.json");
-      return model;
-    };
+      const loadModel = async () => {
+        const model = await tf.loadLayersModel("/assets/model/model.json");
+        return model;
+      };
 
-    const model = await loadModel();
+      const model = await loadModel();
 
-    const predictedClass = (image) =>
-      tf.tidy(() => {
-        const prediction = model.predict(image).dataSync();
-        return prediction;
+      video.addEventListener("seeked", async () => {
+        if (seekResolve) seekResolve();
       });
 
-    const extractFrameAndPredict = async (maxSecond) => {
-      console.log("start predict");
-      let i = 0;
-      while (i <= maxSecond) {
-        console.log("predict frame", i);
-        video.currentTime = i;
-        await new Promise((resolve) => (seekResolve = resolve));
+      const predictedClass = (image) =>
+        tf.tidy(() => {
+          const prediction = model.predict(image).dataSync();
+          return prediction;
+        });
 
+      video.addEventListener("loadeddata", async () => {
         const context = canvas.getContext("2d");
-        context.drawImage(video, 0, 0, 150, 150);
-        const imageData = context.getImageData(0, 0, 150, 150);
-        const imageTensor = tf.browser.fromPixels(imageData);
-        // reshape tensor
-        const resizedImage = tf
-          .reshape(imageTensor, [150, 150, 3])
-          .expandDims();
-        const classID = predictedClass(resizedImage);
-        console.log(classID);
-        if (classID[0] === 1) {
-          console.log("detected");
-          setIntro(i);
-          break;
+        let currentTime = 0;
+
+        while (currentTime < 20) {
+          video.currentTime = currentTime;
+          await new Promise((r) => (seekResolve = r));
+
+          context.drawImage(video, 0, 0, 150, 150);
+          const imageData = context.getImageData(0, 0, 150, 150);
+          const imageTensor = tf.browser.fromPixels(imageData);
+          // reshape tensor
+          const resizedImage = tf
+            .reshape(imageTensor, [150, 150, 3])
+            .expandDims();
+          const classID = await predictedClass(resizedImage);
+          if (classID[0] === 1) {
+            setIntro(currentTime);
+            break;
+          }
+          currentTime++;
         }
-        i++;
-      }
-    };
-
-    video.addEventListener("seeked", async () => {
-      if (seekResolve) seekResolve();
+        resolve();
+      });
+      video.src = videoURL;
     });
-
-    video.addEventListener("loadeddata", extractFrameAndPredict(maxSecond));
   };
 
   if (isLoaded(video) && !isEmpty(video)) {

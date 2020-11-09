@@ -41,3 +41,4 @@
 | 02.11.2020 | 1.5  | Import Machine Learning to Video component                                                      |
 | 08.11.2020 |  11  | Extract frame from video and predict intro (work in many days)                                  |
 |            |  2   | Add Upload video button                                                                         |
+| 09.11.2020 |  3   | Fix extract and predict intro only run on off                                                   |
