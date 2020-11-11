@@ -16,6 +16,8 @@ import { Redirect } from "react-router-dom";
 import * as tf from "@tensorflow/tfjs";
 import { storage } from "../config/fbConfig";
 
+const MAX_LIMIT_PREDICT_SECOND = 20;
+
 const Video = (props) => {
   const { credential } = props;
   const id = useParams().id;
@@ -46,6 +48,8 @@ const Video = (props) => {
 
   const predictIntro = async (url) => {
     return new Promise(async (resolve) => {
+      const start = new Date().getTime();
+      console.log("start predict", start);
       const video = document.createElement("video");
       const videoBlob = await fetch(url).then((res) => res.blob());
       const videoURL = URL.createObjectURL(videoBlob);
@@ -73,7 +77,7 @@ const Video = (props) => {
         const context = canvas.getContext("2d");
         let currentTime = 0;
 
-        while (currentTime < 20) {
+        while (currentTime < MAX_LIMIT_PREDICT_SECOND) {
           video.currentTime = currentTime;
           await new Promise((r) => (seekResolve = r));
 
@@ -91,6 +95,10 @@ const Video = (props) => {
           }
           currentTime++;
         }
+        const end = new Date().getTime();
+        video.currentTime = 0;
+        console.log("end predict", end);
+        console.log("Time", end - start);
         resolve();
       });
       video.src = videoURL;
