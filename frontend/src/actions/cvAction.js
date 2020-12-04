@@ -1,3 +1,5 @@
+import { setAlert } from "./alertAction";
+
 export const createContent = (cvObject) => {
   return (dispatch, getState, { getFirebase }) => {
     const firestore = getFirebase().firestore();
@@ -14,8 +16,14 @@ export const createContent = (cvObject) => {
         dispatch({ type: "CREATE_CONTENT", cvObject });
       })
       .catch((err) => {
-        console.log(err);
         dispatch({ type: "CREATE_CONTENT_ERROR" }, err);
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "error",
+            alertMessage: `Create content failed: ${err}`,
+          })
+        );
       });
   };
 };
@@ -31,8 +39,14 @@ export const updateContent = (contentId, editedContent) => {
         dispatch({ type: "UPDATE_CONTENT", contentId });
       })
       .catch((err) => {
-        console.log(err);
         dispatch({ type: "UPDATE_CONTENT_ERROR" }, err);
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "error",
+            alertMessage: `Update content failed: ${err}`,
+          })
+        );
       });
   };
 };

@@ -1,3 +1,4 @@
+import { setAlert } from "./alertAction";
 export const createVideo = (data) => {
   return (dispatch, getState, { getFirebase }) => {
     const firestore = getFirebase().firestore();
@@ -17,8 +18,14 @@ export const createVideo = (data) => {
         dispatch({ type: "UPLOAD_VIDEO", data });
       })
       .catch((err) => {
-        console.log(err);
         dispatch({ type: "UPLOAD_VIDEO_ERROR" }, err);
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "error",
+            alertMessage: `Upload video failed: ${err}`,
+          })
+        );
       });
   };
 };

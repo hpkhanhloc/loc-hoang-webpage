@@ -1,3 +1,5 @@
+import { setAlert } from "./alertAction";
+
 export const createBlog = (blog) => {
   return (dispatch, getState, { getFirebase }) => {
     const firestore = getFirebase().firestore();
@@ -15,10 +17,23 @@ export const createBlog = (blog) => {
       })
       .then(() => {
         dispatch({ type: "CREATE_BLOG", blog });
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "success",
+            alertMessage: `Created blog ${blog.title}`,
+          })
+        );
       })
       .catch((err) => {
-        console.log(err);
         dispatch({ type: "CREATE_BLOG_ERROR" }, err);
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "error",
+            alertMessage: `Create blog failed: ${err}`,
+          })
+        );
       });
   };
 };
@@ -32,10 +47,23 @@ export const deleteBlog = (blogId) => {
       .delete()
       .then(() => {
         dispatch({ type: "DELETE_BLOG", blogId });
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "success",
+            alertMessage: "Deleted blog!",
+          })
+        );
       })
       .catch((err) => {
-        console.log(err);
         dispatch({ type: "DELETE_BLOG_ERROR" }, err);
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "error",
+            alertMessage: `Delete blog failed: ${err}`,
+          })
+        );
       });
   };
 };
@@ -49,10 +77,21 @@ export const updateBlog = (blogId, editedBlog) => {
       .update({ ...editedBlog, lastChanged: new Date() })
       .then(() => {
         dispatch({ type: "UPDATE_BLOG", blogId });
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "success",
+            alertMessage: "Updated blog!",
+          })
+        );
       })
       .catch((err) => {
-        console.log(err);
         dispatch({ type: "UPDATE_BLOG_ERROR" }, err);
+        setAlert({
+          alert: true,
+          severity: "error",
+          alertMessage: `Update blog failed: ${err}`,
+        });
       });
   };
 };

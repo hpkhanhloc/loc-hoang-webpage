@@ -37,7 +37,6 @@ const CreateBlog = (props) => {
   };
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log(`New Blog ${newBlog.title} ${newBlog.content}`);
     dispatch(createBlog(newBlog));
     history.push("/blogs");
   };

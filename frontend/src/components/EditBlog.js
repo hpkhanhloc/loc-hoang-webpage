@@ -11,6 +11,7 @@ import {
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBlog } from "../actions/blogActions";
+import { setAlert } from "../actions/alertAction";
 import { useStyles } from "../styles";
 import { isEmpty, isLoaded, useFirestoreConnect } from "react-redux-firebase";
 import TextEditor from "./TextEditor";
@@ -45,7 +46,13 @@ const EditBlog = (props) => {
     return <Redirect to="/" />;
   }
   if (isLoaded(blog) && isEmpty(blog)) {
-    console.log("invalid blog");
+    dispatch(
+      setAlert({
+        alert: true,
+        severity: "error",
+        alertMessage: "Invalid blog",
+      })
+    );
     return <Redirect to="/blogs" />;
   }
 

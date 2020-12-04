@@ -20,6 +20,7 @@ import { isLoaded } from "react-redux-firebase";
 import EditBlog from "./components/EditBlog";
 import Videos from "./components/Videos";
 import Video from "./components/Video";
+import AlertSnackbar from "./components/AlertSnackbar";
 
 function App() {
   const classes = useStyles()();
@@ -90,6 +91,7 @@ function App() {
                 </Grid>
               </Grid>
             </main>
+            <AlertSnackbar />
           </div>
         </ThemeProvider>
       )}
