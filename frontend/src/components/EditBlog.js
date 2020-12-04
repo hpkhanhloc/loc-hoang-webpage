@@ -17,7 +17,7 @@ import { isEmpty, isLoaded, useFirestoreConnect } from "react-redux-firebase";
 import TextEditor from "./TextEditor";
 
 const EditBlog = (props) => {
-  const { credential } = props;
+  const { credential, profile } = props;
   const [editedBlog, setEditedBlog] = useState({ title: "", content: "" });
   const id = useParams().id;
   useFirestoreConnect([`/blogs/${id}`]);
@@ -42,7 +42,15 @@ const EditBlog = (props) => {
     history.push(`/blog/${id}`);
   };
 
-  if (!credential.uid) {
+  if (!credential.uid || profile.role !== "owner") {
+    dispatch(
+      setAlert({
+        alert: true,
+        severity: "warning",
+        alertMessage:
+          "Access denied! You have not logged in or have not permission to edit blog.",
+      })
+    );
     return <Redirect to="/" />;
   }
   if (isLoaded(blog) && isEmpty(blog)) {
@@ -77,7 +85,12 @@ const EditBlog = (props) => {
                 fullWidth
               />
             </FormControl>
-            <TextEditor content={blog} setContent={setEditedBlog} />
+            <TextEditor
+              content={blog}
+              setContent={setEditedBlog}
+              border={true}
+              minHeight={300}
+            />
           </Box>
           <Box m={2} display="flex" flexDirection="row" justifyContent="center">
             <Button

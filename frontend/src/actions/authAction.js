@@ -61,6 +61,7 @@ export const signUp = (newUser) => {
             firstName: newUser.firstName,
             lastName: newUser.lastName,
             initials: newUser.firstName[0] + newUser.lastName[0],
+            role: "viewer",
           })
           .then((res) => {
             dispatch(

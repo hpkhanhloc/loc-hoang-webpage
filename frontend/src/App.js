@@ -64,22 +64,30 @@ function App() {
                 <Grid item md={9}>
                   <Switch>
                     <Route exact path="/">
-                      <Resume credential={auth} theme={theme} />
+                      <Resume
+                        credential={auth}
+                        profile={profile}
+                        theme={theme}
+                      />
                     </Route>
                     <Route exact path="/blogs">
                       <Blogs credential={auth} />
                     </Route>
                     <Route path="/createblog">
-                      <CreateBlog credential={auth} theme={theme} />
+                      <CreateBlog
+                        credential={auth}
+                        profile={profile}
+                        theme={theme}
+                      />
                     </Route>
                     <Route exact path="/blog/:id">
-                      <Blog credential={auth} />
+                      <Blog credential={auth} profile={profile} />
                     </Route>
                     <Route exact path="/edit/blog/:id">
-                      <EditBlog credential={auth} />
+                      <EditBlog credential={auth} profile={profile} />
                     </Route>
                     <Route exact path="/videos">
-                      <Videos credential={auth} />
+                      <Videos credential={auth} profile={profile} />
                     </Route>
                     <Route exact path="/video/:id">
                       <Video credential={auth} />

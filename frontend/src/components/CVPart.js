@@ -7,7 +7,7 @@ import TextEditor from "./TextEditor";
 import { updateContent } from "../actions/cvAction";
 
 const CVPart = (props) => {
-  const { credential, cvPart, theme } = props;
+  const { credential, profile, cvPart, theme } = props;
   const [editedContent, setEditedContent] = useState({ content: "" });
   const [edit, setEdit] = useState(false);
   useFirestoreConnect([`/cv`]);
@@ -33,7 +33,7 @@ const CVPart = (props) => {
 
   return (
     <Box>
-      {credential.uid && (
+      {credential.uid && profile?.role === "owner" && (
         <Box display="flex" justifyContent="flex-end">
           {edit ? (
             <>

@@ -122,28 +122,30 @@ const SiteNavigation = (props) => {
             <>
               <ListItemLink
                 index={2}
-                to="/blogs"
-                primary="Blogs"
-                icon={<BookIcon />}
-                selectedIndex={selectedIndex}
-                setSelectedIndex={setSelectedIndex}
-              />
-              <ListItemLink
-                index={3}
-                to="/createblog"
-                primary="Create Blog"
-                icon={<CreateIcon />}
-                selectedIndex={selectedIndex}
-                setSelectedIndex={setSelectedIndex}
-              />
-              <ListItemLink
-                index={4}
                 to="/videos"
                 primary="Machine Learning Video Player"
                 icon={<FeaturedVideoIcon />}
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
               />
+              <ListItemLink
+                index={3}
+                to="/blogs"
+                primary="Blogs"
+                icon={<BookIcon />}
+                selectedIndex={selectedIndex}
+                setSelectedIndex={setSelectedIndex}
+              />
+              {profile.role === "owner" && (
+                <ListItemLink
+                  index={4}
+                  to="/createblog"
+                  primary="Create Blog"
+                  icon={<CreateIcon />}
+                  selectedIndex={selectedIndex}
+                  setSelectedIndex={setSelectedIndex}
+                />
+              )}
             </>
           )}
         </List>

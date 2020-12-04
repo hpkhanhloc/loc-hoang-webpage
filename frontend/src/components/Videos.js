@@ -15,7 +15,7 @@ import { Redirect } from "react-router-dom";
 import UploadVideoPopup from "./UploadVideoPopup";
 
 const Videos = (props) => {
-  const { credential } = props;
+  const { credential, profile } = props;
   useFirestoreConnect([{ collection: "videos" }]);
   const videos = useSelector((state) => state.firestore.ordered.videos);
 
@@ -24,8 +24,11 @@ const Videos = (props) => {
   }
 
   return (
-    <Box m={2}>
-      <Box display="flex" justifyContent="flex-end">
+    <Box pr={3}>
+      <Box
+        display={profile.role === "owner" ? "flex" : "none"}
+        justifyContent="flex-end"
+      >
         <UploadVideoPopup />
       </Box>
       {videos &&

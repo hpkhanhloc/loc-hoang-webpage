@@ -11,12 +11,13 @@ import {
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createBlog } from "../actions/blogActions";
+import { setAlert } from "../actions/alertAction";
 import { useStyles } from "../styles";
 import TextEditor from "./TextEditor";
 import { convertToRaw, EditorState } from "draft-js";
 
 const CreateBlog = (props) => {
-  const { credential, theme } = props;
+  const { credential, profile, theme } = props;
   const [newBlog, setNewBlog] = useState({
     title: "",
     content: JSON.stringify(
@@ -41,7 +42,15 @@ const CreateBlog = (props) => {
     history.push("/blogs");
   };
 
-  if (!credential.uid) {
+  if (!credential.uid || profile.role !== "owner") {
+    dispatch(
+      setAlert({
+        alert: true,
+        severity: "warning",
+        alertMessage:
+          "Access denied! You have not logged in or have not permission to create blog.",
+      })
+    );
     return <Redirect to="/" />;
   }
 

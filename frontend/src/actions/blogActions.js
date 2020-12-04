@@ -72,7 +72,6 @@ export const updateBlog = (blogId, editedBlog) => {
       .doc(blogId)
       .update({ ...editedBlog, lastChanged: new Date() })
       .then(() => {
-        dispatch({ type: "UPDATE_BLOG", blogId });
         dispatch(
           setAlert({
             alert: true,
@@ -82,11 +81,13 @@ export const updateBlog = (blogId, editedBlog) => {
         );
       })
       .catch((err) => {
-        setAlert({
-          alert: true,
-          severity: "error",
-          alertMessage: `Update blog failed: ${err}`,
-        });
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "error",
+            alertMessage: `Update blog failed: ${err}`,
+          })
+        );
       });
   };
 };

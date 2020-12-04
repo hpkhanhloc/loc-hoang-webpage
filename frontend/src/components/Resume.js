@@ -31,7 +31,7 @@ import MongoDBLogo from "../static/images/mongodb_logo.png";
 import GraphQLLogo from "../static/images/graphql_logo.png";
 
 const Resume = (props) => {
-  const { credential, theme } = props;
+  const { credential, profile, theme } = props;
   const dispatch = useDispatch();
 
   useFirestoreConnect([{ collection: "cv", orderBy: ["createdAt", "desc"] }]);
@@ -147,7 +147,7 @@ const Resume = (props) => {
                   Show
                 </Button>
               </Box>
-              {credential.uid && (
+              {credential.uid && profile.role === "owner" && (
                 <Button
                   color="primary"
                   onClick={handleCreateEmptyCVPart("certificate")}
@@ -166,6 +166,7 @@ const Resume = (props) => {
                     <Divider />
                     <CVPart
                       credential={credential}
+                      profile={profile}
                       cvPart={filtered}
                       theme={theme}
                     />
@@ -177,7 +178,7 @@ const Resume = (props) => {
               <Box flexGrow={1}>
                 <Typography variant="h6">Experience and Projects</Typography>
               </Box>
-              {credential.uid && (
+              {credential.uid && profile.role === "owner" && (
                 <Button
                   color="primary"
                   onClick={handleCreateEmptyCVPart("experience")}
@@ -195,6 +196,7 @@ const Resume = (props) => {
                     <Divider />
                     <CVPart
                       credential={credential}
+                      profile={profile}
                       cvPart={filtered}
                       theme={theme}
                     />
@@ -206,7 +208,7 @@ const Resume = (props) => {
               <Box flexGrow={1}>
                 <Typography variant="h6">Education</Typography>
               </Box>
-              {credential.uid && (
+              {credential.uid && profile.role === "owner" && (
                 <Button
                   color="primary"
                   onClick={handleCreateEmptyCVPart("education")}
@@ -223,6 +225,7 @@ const Resume = (props) => {
                     <Divider />
                     <CVPart
                       credential={credential}
+                      profile={profile}
                       cvPart={filtered}
                       theme={theme}
                     />

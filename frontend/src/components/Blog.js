@@ -17,7 +17,7 @@ import { deleteBlog } from "../actions/blogActions";
 import MUIRichTextEditor from "mui-rte";
 
 const Blog = (props) => {
-  const { credential } = props;
+  const { credential, profile } = props;
   const id = useParams().id;
   useFirestoreConnect([`/blogs/${id}`]);
   const blog = useSelector(
@@ -51,7 +51,7 @@ const Blog = (props) => {
                 <Box flexGrow={1}>
                   <Typography variant="h5">{blog.title}</Typography>
                 </Box>
-                <Box>
+                <Box display={profile.role !== "owner" ? "none" : ""}>
                   <Button color="primary" href={`/edit/blog/${id}`}>
                     Edit
                   </Button>

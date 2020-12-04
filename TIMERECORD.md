@@ -44,3 +44,4 @@
 | 09.11.2020 |  3   | Fix extract and predict intro only run on off                                                   |
 | 04.12.2020 |  7   | Support alert snack bar for all activities                                                      |
 | 04.12.2020 | 0.5  | Refactor: remove unnecessary reducers                                                           |
+| 04.12.2020 |  3   | Set firestore rule, grant permission for user                                                   |
