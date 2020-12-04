@@ -6,8 +6,7 @@ export const logIn = (credential) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(credential.email, credential.password)
-      .then((res) => {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res });
+      .then(() => {
         dispatch(
           setAlert({
             alert: true,
@@ -17,7 +16,6 @@ export const logIn = (credential) => {
         );
       })
       .catch((err) => {
-        dispatch({ type: "LOGIN_ERROR", payload: err });
         dispatch(
           setAlert({
             alert: true,
@@ -36,7 +34,6 @@ export const logOut = () => {
       .auth()
       .signOut()
       .then(() => {
-        dispatch({ type: "LOGOUT_SUCCESS" });
         dispatch(
           setAlert({
             alert: true,
@@ -66,7 +63,6 @@ export const signUp = (newUser) => {
             initials: newUser.firstName[0] + newUser.lastName[0],
           })
           .then((res) => {
-            dispatch({ type: "SIGNUP_SUCCESS", payload: res });
             dispatch(
               setAlert({
                 alert: true,
@@ -76,7 +72,6 @@ export const signUp = (newUser) => {
             );
           })
           .catch((err) => {
-            dispatch({ type: "SIGNUP_ERROR", err });
             dispatch(
               setAlert({
                 alert: true,

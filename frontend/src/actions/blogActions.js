@@ -16,7 +16,6 @@ export const createBlog = (blog) => {
         lastChanged: new Date(),
       })
       .then(() => {
-        dispatch({ type: "CREATE_BLOG", blog });
         dispatch(
           setAlert({
             alert: true,
@@ -26,7 +25,6 @@ export const createBlog = (blog) => {
         );
       })
       .catch((err) => {
-        dispatch({ type: "CREATE_BLOG_ERROR" }, err);
         dispatch(
           setAlert({
             alert: true,
@@ -46,7 +44,6 @@ export const deleteBlog = (blogId) => {
       .doc(blogId)
       .delete()
       .then(() => {
-        dispatch({ type: "DELETE_BLOG", blogId });
         dispatch(
           setAlert({
             alert: true,
@@ -56,7 +53,6 @@ export const deleteBlog = (blogId) => {
         );
       })
       .catch((err) => {
-        dispatch({ type: "DELETE_BLOG_ERROR" }, err);
         dispatch(
           setAlert({
             alert: true,
@@ -86,7 +82,6 @@ export const updateBlog = (blogId, editedBlog) => {
         );
       })
       .catch((err) => {
-        dispatch({ type: "UPDATE_BLOG_ERROR" }, err);
         setAlert({
           alert: true,
           severity: "error",

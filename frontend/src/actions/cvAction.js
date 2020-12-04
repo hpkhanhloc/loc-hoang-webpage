@@ -13,10 +13,15 @@ export const createContent = (cvObject) => {
         lastChanged: new Date(),
       })
       .then(() => {
-        dispatch({ type: "CREATE_CONTENT", cvObject });
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "success",
+            alertMessage: "Created content!",
+          })
+        );
       })
       .catch((err) => {
-        dispatch({ type: "CREATE_CONTENT_ERROR" }, err);
         dispatch(
           setAlert({
             alert: true,
@@ -36,10 +41,15 @@ export const updateContent = (contentId, editedContent) => {
       .doc(contentId)
       .update({ ...editedContent, lastChanged: new Date() })
       .then(() => {
-        dispatch({ type: "UPDATE_CONTENT", contentId });
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "success",
+            alertMessage: "Updated content!",
+          })
+        );
       })
       .catch((err) => {
-        dispatch({ type: "UPDATE_CONTENT_ERROR" }, err);
         dispatch(
           setAlert({
             alert: true,

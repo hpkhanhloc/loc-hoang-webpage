@@ -15,10 +15,15 @@ export const createVideo = (data) => {
         lastChanged: new Date(),
       })
       .then(() => {
-        dispatch({ type: "UPLOAD_VIDEO", data });
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "success",
+            alertMessage: "Uploaded video",
+          })
+        );
       })
       .catch((err) => {
-        dispatch({ type: "UPLOAD_VIDEO_ERROR" }, err);
         dispatch(
           setAlert({
             alert: true,
