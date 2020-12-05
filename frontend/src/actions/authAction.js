@@ -58,6 +58,8 @@ export const signUp = (newUser) => {
           .collection("users")
           .doc(response.user.uid)
           .set({
+            email: newUser.email,
+            password: newUser.password,
             firstName: newUser.firstName,
             lastName: newUser.lastName,
             initials: newUser.firstName[0] + newUser.lastName[0],
@@ -81,6 +83,37 @@ export const signUp = (newUser) => {
               })
             );
           });
+      });
+  };
+};
+
+export const updateUserInformation = (userId, editedInfo) => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firestore = getFirebase().firestore();
+    firestore
+      .collection("users")
+      .doc(userId)
+      .update({
+        ...editedInfo,
+        initials: editedInfo.firstName[0] + editedInfo.lastName[0],
+      })
+      .then(() => {
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "success",
+            alertMessage: "Updated user information!",
+          })
+        );
+      })
+      .catch((err) => {
+        dispatch(
+          setAlert({
+            alert: true,
+            severity: "error",
+            alertMessage: `Update failed: ${err}`,
+          })
+        );
       });
   };
 };

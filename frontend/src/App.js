@@ -15,6 +15,7 @@ import Blogs from "./components/Blogs";
 import CreateBlog from "./components/CreateBlog";
 import Blog from "./components/Blog";
 import Notifications from "./components/Notifications";
+import UserControlPanel from "./components/UserControlPanel";
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
 import EditBlog from "./components/EditBlog";
@@ -91,6 +92,9 @@ function App() {
                     </Route>
                     <Route exact path="/video/:id">
                       <Video credential={auth} />
+                    </Route>
+                    <Route exact path="/user/:id">
+                      <UserControlPanel credential={auth} profile={profile} />
                     </Route>
                   </Switch>
                 </Grid>

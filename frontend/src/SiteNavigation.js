@@ -12,6 +12,7 @@ import {
   Card,
   CardMedia,
   IconButton,
+  Button,
 } from "@material-ui/core";
 import Brightness3Icon from "@material-ui/icons/Brightness3";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
@@ -77,6 +78,9 @@ const SiteNavigation = (props) => {
                   </Grid>
                   <Grid item>
                     <Logout />
+                  </Grid>
+                  <Grid item>
+                    <Button href={`/user/${credential.uid}`}>User Info</Button>
                   </Grid>
                 </>
               ) : (

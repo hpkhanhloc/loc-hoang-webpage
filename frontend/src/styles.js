@@ -3,7 +3,7 @@ import {
   createMuiTheme,
   withStyles,
 } from "@material-ui/core/styles";
-import { red } from "@material-ui/core/colors";
+import { deepOrange } from "@material-ui/core/colors";
 import MuiListItem from "@material-ui/core/ListItem";
 
 const useStyles = () => {
@@ -51,12 +51,30 @@ const useStyles = () => {
       boxShadow: "none",
       color: "white",
     },
-    avatar: {
-      backgroundColor: red[500],
+    smallAvatar: {
+      width: theme.spacing(5),
+      height: theme.spacing(5),
+      color: theme.palette.getContrastText(deepOrange[500]),
+      fontSize: theme.spacing(2),
+      backgroundColor: deepOrange[500],
+    },
+    largeAvatar: {
+      width: theme.spacing(16),
+      height: theme.spacing(16),
+      color: theme.palette.getContrastText(deepOrange[500]),
+      fontSize: theme.spacing(8),
+      backgroundColor: deepOrange[500],
     },
     uploadImagePopover: {
       padding: 10,
       maxWidth: 350,
+    },
+    userAvatarCard: {
+      backgroundColor: "transparent",
+      border: 0,
+      boxShadow: "none",
+      color: "white",
+      padding: 0,
     },
   }));
 };
