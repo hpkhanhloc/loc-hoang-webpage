@@ -15,17 +15,36 @@ const useStyles = () => {
       position: "fixed",
       background: (props) =>
         props.background === "true"
-          ? "linear-gradient(135deg, #0fb9b1, #3fc7c0)"
-          : "linear-gradient(135deg, #212121, #333333)",
+          ? "#FFFFFF"
+          : "linear-gradient(135deg, #212121, #262626)",
     },
     drawer: {
       width: 240,
+      zIndex: theme.zIndex.drawer,
       flexShrink: 0,
     },
-    drawerPaper: {
-      width: 240,
+    drawerBackdrop: {
+      zIndex: theme.zIndex.drawer - 1,
     },
-    toolBar: theme.mixins.toolbar,
+    drawerPaperOpen: {
+      width: 240,
+      transition: theme.transitions.create("width", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    drawerPaperClose: {
+      overflowX: "hidden",
+      width: theme.spacing(8),
+      whiteSpace: "nowrap",
+      transition: theme.transitions.create("width", {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+    },
+    toolBar: {
+      height: 80,
+    },
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
@@ -44,7 +63,6 @@ const useStyles = () => {
       color: "#fff",
     },
     card: {
-      height: 64,
       backgroundColor: "transparent",
       border: 0,
       boxShadow: "none",
@@ -54,6 +72,11 @@ const useStyles = () => {
       width: theme.spacing(5),
       height: theme.spacing(5),
       fontSize: theme.spacing(2),
+    },
+    mediumAvatar: {
+      width: theme.spacing(8),
+      height: theme.spacing(8),
+      fontSize: theme.spacing(5),
     },
     largeAvatar: {
       width: theme.spacing(16),
@@ -71,6 +94,14 @@ const useStyles = () => {
       color: "white",
       padding: 0,
     },
+    appBarLogo: {
+      "&:hover": {
+        cursor: "pointer",
+      },
+      margin: theme.spacing(1),
+      flexDirection: "row",
+      alignItems: "center",
+    },
   }));
 };
 
@@ -78,7 +109,7 @@ const lightTheme = createMuiTheme({
   palette: {
     type: "light",
     primary: {
-      main: "#0fb9b1",
+      main: "#2196f3",
     },
     secondary: {
       main: "#f50057",
@@ -97,7 +128,7 @@ const lightTheme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: "Nunito",
+    fontFamily: "Merriweather",
     h6: {
       fontWeight: "bold",
     },
@@ -158,9 +189,13 @@ const darkTheme = createMuiTheme({
     success: {
       main: "#20bf6b",
     },
+    background: {
+      default: "#212121",
+      paper: "#262626",
+    },
   },
   typography: {
-    fontFamily: "Nunito",
+    fontFamily: "Merriweather",
     h6: {
       fontWeight: "bold",
     },

@@ -6,6 +6,7 @@ import {
   CircularProgress,
   Backdrop,
   Grid,
+  Box,
 } from "@material-ui/core";
 import { useStyles, lightTheme, darkTheme } from "./styles";
 
@@ -62,7 +63,7 @@ function App() {
             <main className={classes.content}>
               <div className={classes.toolBar} />
               <Grid container justify="space-evenly">
-                <Grid item md={9}>
+                <Grid item sm={12} md={9}>
                   <Switch>
                     <Route exact path="/">
                       <Resume
@@ -99,7 +100,9 @@ function App() {
                   </Switch>
                 </Grid>
                 <Grid item md={3}>
-                  <Notifications />
+                  <Box display={{ xs: "none", sm: "none", md: "block" }}>
+                    <Notifications />
+                  </Box>
                 </Grid>
               </Grid>
             </main>

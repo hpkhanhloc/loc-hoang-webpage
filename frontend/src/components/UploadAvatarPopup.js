@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogActions,
   CircularProgress,
+  Tooltip,
 } from "@material-ui/core";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import { storage } from "../config/fbConfig";
@@ -40,14 +41,16 @@ const UploadAvatarPopup = (props) => {
 
   return (
     <>
-      <IconButton
-        color="primary"
-        aria-label="upload avatar"
-        component="span"
-        onClick={handleClickOpen}
-      >
-        <PhotoCameraIcon fontSize="large" />
-      </IconButton>
+      <Tooltip title="Change avatar">
+        <IconButton
+          color="primary"
+          aria-label="upload avatar"
+          component="span"
+          onClick={handleClickOpen}
+        >
+          <PhotoCameraIcon fontSize="large" />
+        </IconButton>
+      </Tooltip>
       <Dialog open={open} onClose={handleClose}>
         <form>
           <DialogContent>

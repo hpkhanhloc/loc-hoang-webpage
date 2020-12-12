@@ -1,4 +1,5 @@
 import React, { useMemo, forwardRef, useState } from "react";
+import clsx from "clsx";
 import {
   AppBar,
   Toolbar,
@@ -9,31 +10,33 @@ import {
   ListItemIcon,
   ListItemText,
   List,
-  Card,
-  CardMedia,
+  Box,
   IconButton,
-  Button,
+  Avatar,
+  Tooltip,
+  Backdrop,
 } from "@material-ui/core";
 import Brightness3Icon from "@material-ui/icons/Brightness3";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import { useStyles, ListItem } from "./styles";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Logout from "./components/Logout";
 import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
-import BookIcon from "@material-ui/icons/Book";
+import DescriptionIcon from "@material-ui/icons/Description";
 import CreateIcon from "@material-ui/icons/Create";
 import UserInfo from "./components/UserInfo";
-import FeaturedVideoIcon from "@material-ui/icons/FeaturedVideo";
-import AppBarLightLogo from "./static/images/logo.png";
-import AppBarDarkLogo from "./static/images/logodark.png";
+import MovieFilterIcon from "@material-ui/icons/MovieFilter";
+import MenuIcon from "@material-ui/icons/Menu";
+import AppBarAvatar from "./static/images/avatar.jpg";
 
 const SiteNavigation = (props) => {
   const { credential, profile, theme, setTheme } = props;
   const [selectedIndex, setSelectedIndex] = useState(1);
   const themeIcon = !theme ? <Brightness7Icon /> : <Brightness3Icon />;
   const classes = useStyles()();
+  const [open, setOpen] = useState(false);
+  const history = useHistory();
 
   const CustomAppBar = (props) => {
     const classes = useStyles()(props);
@@ -41,26 +44,47 @@ const SiteNavigation = (props) => {
   };
   CustomAppBar.muiName = AppBar.muiName;
 
+  const handleDrawerToggle = () => {
+    setOpen(!open);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       <CustomAppBar background={theme.toString()}>
         <Toolbar>
           <Grid container justify="space-between" alignItems="center">
-            <Grid item xs={6}>
-              <Card
-                style={{
-                  display: "flex",
-                  background: "transparent",
-                  boxShadow: "none",
-                }}
+            <Grid item container xs={6} alignItems="center">
+              <Tooltip title="Navigation menu">
+                <IconButton
+                  aria-label="toggle drawer"
+                  onClick={handleDrawerToggle}
+                  style={{ marginLeft: -18 }}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Tooltip>
+              <Box
+                onClick={() => history.push("/")}
+                display={{ xs: "none", md: "flex" }}
+                className={classes.appBarLogo}
               >
-                <CardMedia
-                  style={{ height: 50, width: "auto", marginLeft: "4%" }}
-                  component="img"
-                  src={theme ? AppBarLightLogo : AppBarDarkLogo}
-                  title="Appbar Logo"
+                <Avatar
+                  aria-label="appbarAvatar"
+                  className={classes.mediumAvatar}
+                  src={AppBarAvatar}
                 />
-              </Card>
+                <Typography
+                  color="textPrimary"
+                  variant="h5"
+                  noWrap
+                  style={{ marginLeft: 8 }}
+                >
+                  Hello! I'm Loc Hoang
+                </Typography>
+              </Box>
             </Grid>
             <Grid
               item
@@ -68,21 +92,20 @@ const SiteNavigation = (props) => {
               container
               spacing={3}
               direction="row"
-              justify="center"
+              justify="flex-end"
               alignItems="center"
             >
+              <IconButton
+                edge="end"
+                aria-label="theme mode"
+                onClick={() => setTheme(!theme)}
+              >
+                {themeIcon}
+              </IconButton>
               {credential.uid ? (
-                <>
-                  <Grid item>
-                    <UserInfo profile={profile} />
-                  </Grid>
-                  <Grid item>
-                    <Logout />
-                  </Grid>
-                  <Grid item>
-                    <Button href={`/user/${credential.uid}`}>User Info</Button>
-                  </Grid>
-                </>
+                <Grid item>
+                  <UserInfo credential={credential} profile={profile} />
+                </Grid>
               ) : (
                 <>
                   <Grid item>
@@ -93,23 +116,24 @@ const SiteNavigation = (props) => {
                   </Grid>
                 </>
               )}
-              <IconButton
-                edge="end"
-                color="inherit"
-                aria-label="theme mode"
-                onClick={() => setTheme(!theme)}
-              >
-                {themeIcon}
-              </IconButton>
             </Grid>
           </Grid>
         </Toolbar>
       </CustomAppBar>
       <Drawer
-        className={classes.drawer}
+        className={clsx(classes.drawer, {
+          [classes.drawerPaperOpen]: open,
+          [classes.drawerPaperClose]: !open,
+        })}
         variant="permanent"
         anchor="left"
-        classes={{ paper: classes.drawerPaper }}
+        classes={{
+          paper: clsx({
+            [classes.drawerPaperOpen]: open,
+            [classes.drawerPaperClose]: !open,
+          }),
+        }}
+        open={open}
       >
         <div className={classes.toolBar} />
         <Divider />
@@ -121,6 +145,7 @@ const SiteNavigation = (props) => {
             icon={<AssignmentIndIcon />}
             selectedIndex={selectedIndex}
             setSelectedIndex={setSelectedIndex}
+            handleDrawerClose={handleDrawerClose}
           />
           {credential.uid && (
             <>
@@ -128,17 +153,19 @@ const SiteNavigation = (props) => {
                 index={2}
                 to="/videos"
                 primary="Machine Learning Video Player"
-                icon={<FeaturedVideoIcon />}
+                icon={<MovieFilterIcon />}
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
+                handleDrawerClose={handleDrawerClose}
               />
               <ListItemLink
                 index={3}
                 to="/blogs"
                 primary="Blogs"
-                icon={<BookIcon />}
+                icon={<DescriptionIcon />}
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
+                handleDrawerClose={handleDrawerClose}
               />
               {profile.role === "owner" && (
                 <ListItemLink
@@ -148,12 +175,18 @@ const SiteNavigation = (props) => {
                   icon={<CreateIcon />}
                   selectedIndex={selectedIndex}
                   setSelectedIndex={setSelectedIndex}
+                  handleDrawerClose={handleDrawerClose}
                 />
               )}
             </>
           )}
         </List>
       </Drawer>
+      <Backdrop
+        open={open}
+        onClick={handleDrawerClose}
+        className={classes.drawerBackdrop}
+      />
     </>
   );
 };
@@ -165,6 +198,7 @@ const ListItemLink = ({
   icon,
   selectedIndex,
   setSelectedIndex,
+  handleDrawerClose,
 }) => {
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -183,7 +217,10 @@ const ListItemLink = ({
         button
         component={renderLink}
         selected={selectedIndex === index}
-        onClick={(event) => handleListItemClick(event, index)}
+        onClick={(event) => {
+          handleDrawerClose();
+          handleListItemClick(event, index);
+        }}
       >
         {icon && <ListItemIcon>{icon}</ListItemIcon>}
         <ListItemText

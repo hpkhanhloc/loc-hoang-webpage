@@ -4,6 +4,7 @@ import { useStyles } from "../styles";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logOut } from "../actions/authAction";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const Logout = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,11 @@ const Logout = () => {
   };
   return (
     <>
-      <Button className={classes.authButton} onClick={handleLogout}>
+      <Button
+        className={classes.authButton}
+        onClick={handleLogout}
+        startIcon={<ExitToAppIcon />}
+      >
         Logout
       </Button>
     </>
