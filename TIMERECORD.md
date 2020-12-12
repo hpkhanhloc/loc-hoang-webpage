@@ -48,3 +48,4 @@
 | 05.12.2020 | 3.5  | Creat user information page                                                                     |
 | 12.12.2020 |  6   | Support user upload/change avatar, change password, update information                          |
 | 12.12.2020 |  6   | Remake appbar, navigation with responsive design, change font, theme color                      |
+| 13.12.2020 | 0.5  | Fix git ignore                                                                                  |

@@ -2,3 +2,6 @@
 .vscode/
 .firebase
 firebase-debug.log
+
+/frontend/build
+/frontend/dist
