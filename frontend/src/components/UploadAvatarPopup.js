@@ -2,23 +2,20 @@ import React, { useState } from "react";
 import {
   IconButton,
   Button,
-  TextField,
   Dialog,
   DialogContent,
   DialogActions,
   CircularProgress,
 } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import { storage } from "../config/fbConfig";
 import { useDispatch } from "react-redux";
-import { createVideo } from "../actions/videoAction";
+import { updateUserInformation } from "../actions/authAction";
 
-const UploadVideoPopup = () => {
+const UploadAvatarPopup = (props) => {
+  const { userId } = props;
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({
-    title: "",
-    thumb: "",
-    description: "",
     filename: "",
   });
   const [loading, setLoading] = useState(false);
@@ -31,15 +28,12 @@ const UploadVideoPopup = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleChange = (event) => {
-    setData({ ...data, [event.target.id]: event.target.value });
-  };
 
   const handleUpload = async (event) => {
     setLoading(true);
     event.preventDefault();
-    const src = await uploadVideo(file);
-    dispatch(createVideo({ ...data, src: src }));
+    const src = await uploadAvatar(file);
+    dispatch(updateUserInformation(userId, { avatar: src }));
     setLoading(false);
     setOpen(false);
   };
@@ -48,47 +42,18 @@ const UploadVideoPopup = () => {
     <>
       <IconButton
         color="primary"
-        aria-label="upload video"
+        aria-label="upload avatar"
         component="span"
         onClick={handleClickOpen}
       >
-        <AddIcon fontSize="large" />
+        <PhotoCameraIcon fontSize="large" />
       </IconButton>
       <Dialog open={open} onClose={handleClose}>
         <form>
           <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="title"
-              label="Title"
-              type="text"
-              onChange={handleChange}
-              required
-              fullWidth
-            />
-            <TextField
-              margin="dense"
-              id="thumb"
-              label="Thumbnail"
-              type="url"
-              onChange={handleChange}
-              required
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="description"
-              label="Description"
-              type="text"
-              onChange={handleChange}
-              required
-              fullWidth
-            />
             <input
-              id="video-upload-button"
-              accept="video/*"
+              id="avatar-upload-button"
+              accept="image/*"
               type="file"
               onChange={(event) => {
                 setFile(event.target.files[0]);
@@ -115,9 +80,9 @@ const UploadVideoPopup = () => {
   );
 };
 
-const uploadVideoToFirebase = (file) => {
+const uploadAvatarToFirebase = (file) => {
   return new Promise((resolve) => {
-    const uploadTask = storage.ref(`videos/${file.name}`).put(file);
+    const uploadTask = storage.ref(`avatars/${file.name}`).put(file);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -140,7 +105,7 @@ const uploadVideoToFirebase = (file) => {
       },
       () => {
         storage
-          .ref("videos")
+          .ref("avatars")
           .child(file.name)
           .getDownloadURL()
           .then((url) => {
@@ -152,9 +117,9 @@ const uploadVideoToFirebase = (file) => {
   });
 };
 
-const uploadVideo = async (file) => {
+const uploadAvatar = async (file) => {
   return new Promise(async (resolve, reject) => {
-    const url = await uploadVideoToFirebase(file);
+    const url = await uploadAvatarToFirebase(file);
     if (!url) {
       reject();
       return;
@@ -163,4 +128,4 @@ const uploadVideo = async (file) => {
   });
 };
 
-export default UploadVideoPopup;
+export default UploadAvatarPopup;

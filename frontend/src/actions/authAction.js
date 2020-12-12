@@ -62,8 +62,8 @@ export const signUp = (newUser) => {
             password: newUser.password,
             firstName: newUser.firstName,
             lastName: newUser.lastName,
-            initials: newUser.firstName[0] + newUser.lastName[0],
             role: "viewer",
+            avatar: "",
           })
           .then((res) => {
             dispatch(
@@ -95,7 +95,6 @@ export const updateUserInformation = (userId, editedInfo) => {
       .doc(userId)
       .update({
         ...editedInfo,
-        initials: editedInfo.firstName[0] + editedInfo.lastName[0],
       })
       .then(() => {
         dispatch(

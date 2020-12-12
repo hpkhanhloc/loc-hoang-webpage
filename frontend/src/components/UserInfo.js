@@ -12,9 +12,11 @@ const UserInfo = (props) => {
         <CardHeader
           style={{ height: 64 }}
           avatar={
-            <Avatar aria-label="userAvatar" className={classes.smallAvatar}>
-              {profile.initials}
-            </Avatar>
+            <Avatar
+              aria-label="userAvatar"
+              src={profile.avatar}
+              className={classes.smallAvatar}
+            />
           }
           title={
             <Typography variant="button" color="textPrimary">

@@ -46,3 +46,4 @@
 | 04.12.2020 | 0.5  | Refactor: remove unnecessary reducers                                                           |
 | 04.12.2020 |  3   | Set firestore rule, grant permission for user                                                   |
 | 05.12.2020 | 3.5  | Creat user information page                                                                     |
+| 12.12.2020 |  6   | Support user upload/change avatar, change password, update information                          |

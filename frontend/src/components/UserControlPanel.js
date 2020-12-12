@@ -10,25 +10,68 @@ import {
   Paper,
   TextField,
 } from "@material-ui/core";
-import { Redirect, useHistory, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { setAlert } from "../actions/alertAction";
 import { useStyles } from "../styles";
 import { getFirebase } from "react-redux-firebase";
+import UploadAvatarPopup from "./UploadAvatarPopup";
+import { updateUserInformation } from "../actions/authAction";
 
 const UserControlPanel = (props) => {
   const { credential, profile } = props;
-  const [newFirstName, setNewFirstName] = useState();
-  const [newLastName, setNewLastName] = useState();
   const [newPassword, setNewPassword] = useState();
   const [retypePassword, setRetypePassword] = useState();
+  const [newProfile, setNewProfile] = useState({
+    firstName: profile.firstName,
+    lastName: profile.lastName,
+    password: profile.password,
+  });
   const userID = useParams().id;
   const classes = useStyles()();
   const dispatch = useDispatch();
   const firebase = getFirebase();
   const user = firebase.auth().currentUser;
 
-  const handleUpdateUserInfo = () => {};
+  const handleChange = (event) => {
+    setNewProfile({ ...newProfile, [event.target.id]: event.target.value });
+  };
+
+  const handleUpdateUserInfo = () => {
+    if (newPassword && retypePassword && newPassword !== retypePassword) {
+      dispatch(
+        setAlert({
+          alert: true,
+          severity: "warning",
+          alertMessage: "New password and retype password are not matched.",
+        })
+      );
+    } else {
+      if (newPassword) {
+        user
+          .updatePassword(newPassword)
+          .then(() => {
+            dispatch(
+              updateUserInformation(userID, {
+                ...newProfile,
+                password: newPassword,
+              })
+            );
+          })
+          .catch((error) => {
+            dispatch(
+              setAlert({
+                alert: true,
+                severity: "error",
+                alertMessage: `Update password failed: ${error}`,
+              })
+            );
+          });
+      } else {
+        dispatch(updateUserInformation(userID, newProfile));
+      }
+    }
+  };
 
   if (!credential.uid || credential.uid !== userID) {
     dispatch(
@@ -48,10 +91,17 @@ const UserControlPanel = (props) => {
         <Box p={2}>
           <Grid container spacing={2}>
             <Grid item md={4} container justify="center" alignItems="center">
-              <Box display="flex" justifyContent="center">
-                <Avatar aria-label="userAvatar" className={classes.largeAvatar}>
-                  {profile.initials}
-                </Avatar>
+              <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+              >
+                <Avatar
+                  aria-label="userAvatar"
+                  className={classes.largeAvatar}
+                  src={profile.avatar}
+                />
+                <UploadAvatarPopup userId={credential.uid} />
               </Box>
             </Grid>
             <Divider orientation="vertical" flexItem />
@@ -66,17 +116,19 @@ const UserControlPanel = (props) => {
               <Grid item container spacing={8}>
                 <Grid item>
                   <TextField
+                    id="firstName"
                     label="First name"
                     defaultValue={profile.firstName}
-                    onChange={(e) => setNewFirstName(e.target.value)}
+                    onChange={handleChange}
                     InputLabelProps={{ shrink: true }}
                   />
                 </Grid>
                 <Grid item>
                   <TextField
+                    id="lastName"
                     label="Last name"
                     defaultValue={profile.lastName}
-                    onChange={(e) => setNewLastName(e.target.value)}
+                    onChange={handleChange}
                     InputLabelProps={{ shrink: true }}
                   />
                 </Grid>
@@ -84,19 +136,21 @@ const UserControlPanel = (props) => {
               <Grid item container spacing={8}>
                 <Grid item>
                   <TextField
+                    id="password"
                     label="New password"
                     type="password"
                     value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
+                    onChange={(event) => setNewPassword(event.target.value)}
                     InputLabelProps={{ shrink: true }}
                   />
                 </Grid>
                 <Grid item>
                   <TextField
+                    id="retypepassword"
                     label="Retype new password"
                     type="password"
                     value={retypePassword}
-                    onChange={(e) => setRetypePassword(e.target.value)}
+                    onChange={(event) => setRetypePassword(event.target.value)}
                     InputLabelProps={{ shrink: true }}
                   />
                 </Grid>
