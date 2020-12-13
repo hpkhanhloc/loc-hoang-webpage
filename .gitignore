@@ -1,6 +1,7 @@
 .idea/
 .vscode/
 .firebase
+.eslintcache
 firebase-debug.log
 
 /frontend/build

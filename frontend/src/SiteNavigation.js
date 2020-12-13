@@ -28,6 +28,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import UserInfo from "./components/UserInfo";
 import MovieFilterIcon from "@material-ui/icons/MovieFilter";
 import MenuIcon from "@material-ui/icons/Menu";
+import GamesIcon from "@material-ui/icons/Games";
 import AppBarAvatar from "./static/images/avatar.jpg";
 
 const SiteNavigation = (props) => {
@@ -49,6 +50,10 @@ const SiteNavigation = (props) => {
   };
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+  const handleChangeTheme = (event) => {
+    event.preventDefault();
+    setTheme(!theme);
   };
 
   return (
@@ -98,7 +103,7 @@ const SiteNavigation = (props) => {
               <IconButton
                 edge="end"
                 aria-label="theme mode"
-                onClick={() => setTheme(!theme)}
+                onClick={handleChangeTheme}
               >
                 {themeIcon}
               </IconButton>
@@ -180,6 +185,15 @@ const SiteNavigation = (props) => {
               )}
             </>
           )}
+          <ListItemLink
+            index={5}
+            to="/sudoku"
+            primary="Sudoku"
+            icon={<GamesIcon />}
+            selectedIndex={selectedIndex}
+            setSelectedIndex={setSelectedIndex}
+            handleDrawerClose={handleDrawerClose}
+          />
         </List>
       </Drawer>
       <Backdrop

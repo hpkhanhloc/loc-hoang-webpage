@@ -22,6 +22,7 @@ import { isLoaded } from "react-redux-firebase";
 import EditBlog from "./components/EditBlog";
 import Videos from "./components/Videos";
 import Video from "./components/Video";
+import Sudoku from "./components/Sudoku";
 import AlertSnackbar from "./components/AlertSnackbar";
 
 function App() {
@@ -102,6 +103,9 @@ function App() {
                     </Route>
                     <Route exact path="/user/:id">
                       <UserControlPanel credential={auth} profile={profile} />
+                    </Route>
+                    <Route exact path="/sudoku">
+                      <Sudoku />
                     </Route>
                   </Switch>
                 </Grid>

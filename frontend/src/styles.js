@@ -102,6 +102,20 @@ const useStyles = () => {
       flexDirection: "row",
       alignItems: "center",
     },
+    edge3x3VerBox: {
+      marginRight: 16,
+    },
+    edge3x3HorBox: {
+      marginBottom: 16,
+    },
+    readonlyBox: {
+      disable: true,
+      color: theme.palette.primary,
+    },
+    editableBox: {
+      disable: false,
+      color: theme.palette.primary,
+    },
   }));
 };
 

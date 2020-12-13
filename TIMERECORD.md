@@ -50,3 +50,4 @@
 | 12.12.2020 |  6   | Remake appbar, navigation with responsive design, change font, theme color                      |
 | 13.12.2020 | 0.5  | Fix git ignore                                                                                  |
 | 13.12.2020 | 0.5  | Initial load select theme base on system reference                                              |
+| 13.12.2020 |  6   | Sudoku game page                                                                                |
