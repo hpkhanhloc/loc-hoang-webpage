@@ -28,12 +28,18 @@ function App() {
   const classes = useStyles()();
   const auth = useSelector((state) => state.firebase.auth);
   const profile = useSelector((state) => state.firebase.profile);
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState();
 
   useEffect(() => {
     const localStorageTheme = localStorage.getItem("theme");
     if (localStorageTheme) {
       setTheme(JSON.parse(localStorageTheme));
+    } else {
+      const systemReferenceTheme = window.matchMedia(
+        "(prefers-color-scheme: light)"
+      ).matches;
+      setTheme(systemReferenceTheme);
+      localStorage.setItem("theme", JSON.stringify(systemReferenceTheme));
     }
   }, []);
 
