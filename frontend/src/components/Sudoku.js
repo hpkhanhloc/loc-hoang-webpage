@@ -14,10 +14,12 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
-  CardContent,
-  Card,
+  Dialog,
+  DialogTitle,
+  DialogContent,
 } from "@material-ui/core";
 import { useStyles, lightTheme } from "../styles";
+import useTimer from "../hooks/useTimer";
 
 const Sudoku = (props) => {
   const sudokuTool = SudokuToolCollection();
@@ -28,10 +30,25 @@ const Sudoku = (props) => {
   );
   const [solver, setSolver] = useState(null);
   const [difficulty, setDifficulty] = useState(35);
+  const [open, setOpen] = useState(false);
+  const {
+    timer,
+    isActive,
+    isPaused,
+    handleStart,
+    handlePause,
+    handleResume,
+    handleReset,
+  } = useTimer(0);
   const classes = useStyles()();
 
   useEffect(() => {
-    console.log("change");
+    if (solver !== null) {
+      if (handleCompareResult(sudoku, solver)) {
+        setOpen(true);
+        handlePause();
+      }
+    }
   }, [sudoku]);
 
   const handleSelectDifficulty = (event) => {
@@ -39,25 +56,60 @@ const Sudoku = (props) => {
   };
 
   const handleCreateNewGame = () => {
+    handleReset();
     const rawSudoku = sudokuTool.generator.generate(difficulty);
     const rawSolver = sudokuTool.solver.solve(rawSudoku);
-    setSudoko(sudokuTool.conversions.stringToGrid(rawSudoku));
-    setSolver(sudokuTool.conversions.stringToGrid(rawSolver));
+    setSudoko(convertSudoku(rawSudoku));
+    setSolver(convertSudoku(rawSolver));
+    handleStart();
+  };
+
+  const convertSudoku = (stringSudoku) => {
+    const arraySudoku = sudokuTool.conversions.stringToGrid(stringSudoku);
+    const converted = arraySudoku.map((row) =>
+      row.map((e) => (e !== "." ? Number(e) : e))
+    );
+    return converted;
   };
 
   const handleHint = () => {
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
         if (sudoku[i][j] !== solver[i][j]) {
-          sudoku[i][j] = solver[i][j];
-          setSudoko(sudoku);
+          const newSudoku = [...sudoku];
+          newSudoku[i][j] = solver[i][j];
+          setSudoko(newSudoku);
           i = 9;
           break;
         }
-        break;
       }
     }
-    console.log(sudoku);
+  };
+
+  const handleChangeTextBox = (event, rowIndex, colIndex) => {
+    const newSudoku = [...sudoku];
+    newSudoku[rowIndex][colIndex] = event.target.value;
+    setSudoko(newSudoku);
+  };
+
+  const handleCompareResult = (sudoku, solver) => {
+    const result = sudoku
+      .flat()
+      .every((element, index) => element == solver.flat()[index]);
+    return result;
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const formatTime = (timer) => {
+    const getSeconds = `0${timer % 60}`.slice(-2);
+    const minutes = `${Math.floor(timer / 60)}`;
+    const getMinutes = `0${minutes % 60}`.slice(-2);
+    const getHours = `0${Math.floor(timer / 3600)}`.slice(-2);
+
+    return `${getHours} : ${getMinutes} : ${getSeconds}`;
   };
 
   return (
@@ -79,17 +131,17 @@ const Sudoku = (props) => {
                     flexDirection="row"
                     key={rowIndex}
                     className={
-                      [2, 5].includes(rowIndex) && classes.edge3x3HorBox
+                      [2, 5].includes(rowIndex) ? classes.edge3x3HorBox : ""
                     }
                   >
                     {row.map((col, colIndex) => (
                       <Box
                         key={colIndex}
                         className={
-                          [2, 5].includes(colIndex) && classes.edge3x3VerBox
+                          [2, 5].includes(colIndex) ? classes.edge3x3VerBox : ""
                         }
                       >
-                        {col !== "." ? (
+                        {typeof col === "number" ? (
                           <TextField
                             size="small"
                             variant="outlined"
@@ -108,12 +160,19 @@ const Sudoku = (props) => {
                           />
                         ) : (
                           <TextField
+                            type="number"
                             size="small"
                             variant="outlined"
-                            value={col}
+                            value={col !== "." ? col : ""}
                             margin="dense"
                             style={{ width: "3rem", margin: 0 }}
-                            inputProps={{ style: { textAlign: "center" } }}
+                            inputProps={{
+                              style: { textAlign: "center" },
+                            }}
+                            onChange={(event) => {
+                              handleChangeTextBox(event, rowIndex, colIndex);
+                            }}
+                            disabled={solver === null ? true : false}
                           />
                         )}
                       </Box>
@@ -124,6 +183,11 @@ const Sudoku = (props) => {
             </Grid>
             <Grid item xs={4} container alignItems="center">
               <Box display="flex" flexDirection="column">
+                <Box m={2}>
+                  <Typography variant="h4" align="center">
+                    {formatTime(timer)}
+                  </Typography>
+                </Box>
                 <FormControl component="fieldset" size="small">
                   <FormLabel component="legend">Difficulty</FormLabel>
                   <RadioGroup
@@ -160,6 +224,20 @@ const Sudoku = (props) => {
                     New game
                   </Button>
                   <Button
+                    color="primary"
+                    disabled={!isActive || isPaused}
+                    onClick={handlePause}
+                  >
+                    Pause
+                  </Button>
+                  <Button
+                    color="primary"
+                    disabled={!isActive || !isPaused}
+                    onClick={handleResume}
+                  >
+                    Resume
+                  </Button>
+                  <Button
                     color="secondary"
                     disabled={solver === null ? true : false}
                     onClick={handleHint}
@@ -172,6 +250,18 @@ const Sudoku = (props) => {
           </Grid>
           <Divider style={{ marginTop: 32, marginBottom: 8 }} />
         </Box>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>
+            <Typography variant="h2" align="center">
+              You Won!!!
+            </Typography>
+          </DialogTitle>
+          <DialogContent>
+            <Typography variant="h6" align="center">
+              {`Solved in ${formatTime(timer)}`}
+            </Typography>
+          </DialogContent>
+        </Dialog>
       </Paper>
     </Container>
   );
