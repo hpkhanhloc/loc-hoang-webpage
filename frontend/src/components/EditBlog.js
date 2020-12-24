@@ -11,7 +11,7 @@ import {
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBlog } from "../actions/blogActions";
-import { setAlert } from "../actions/alertAction";
+import { setAlert } from "../actions/alertActions";
 import { useStyles } from "../styles";
 import { isEmpty, isLoaded, useFirestoreConnect } from "react-redux-firebase";
 import TextEditor from "./TextEditor";

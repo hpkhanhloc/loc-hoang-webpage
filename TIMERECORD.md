@@ -53,3 +53,4 @@
 | 13.12.2020 |  6   | Sudoku game page                                                                                |
 | 14.12.2020 |  7   | Complete function and UI for sudoku game                                                        |
 | 24.12.2020 |  3   | Fix firebase storage fetch video fail (configure)                                               |
+| 24.12.2020 |  7   | Support comment in blog                                                                         |

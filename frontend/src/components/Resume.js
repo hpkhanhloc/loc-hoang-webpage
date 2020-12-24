@@ -16,7 +16,7 @@ import {
   Link,
 } from "@material-ui/core";
 import CVPart from "./CVPart";
-import { createContent } from "../actions/cvAction";
+import { createContent } from "../actions/cvActions";
 import { convertToRaw, EditorState } from "draft-js";
 import EmailIcon from "@material-ui/icons/Email";
 import HomeIcon from "@material-ui/icons/Home";

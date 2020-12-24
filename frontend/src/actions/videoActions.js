@@ -1,4 +1,4 @@
-import { setAlert } from "./alertAction";
+import { setAlert } from "./alertActions";
 export const createVideo = (data) => {
   return (dispatch, getState, { getFirebase }) => {
     const firestore = getFirebase().firestore();

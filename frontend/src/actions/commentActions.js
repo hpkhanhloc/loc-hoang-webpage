@@ -1,17 +1,19 @@
 import { setAlert } from "./alertActions";
 
-export const createBlog = (blog) => {
+export const createComment = (comment) => {
   return (dispatch, getState, { getFirebase }) => {
     const firestore = getFirebase().firestore();
     const profile = getState().firebase.profile;
-    const authorId = getState().firebase.auth.uid;
+    const authorID = getState().firebase.auth.uid;
     firestore
-      .collection("blogs")
+      .collection("comments")
       .add({
-        ...blog,
+        ...comment,
         authorFirstName: profile.firstName,
         authorLastName: profile.lastName,
-        authorId: authorId,
+        authorID: authorID,
+        like: 0,
+        dislike: 0,
         createdAt: new Date(),
         lastChanged: new Date(),
       })
@@ -20,7 +22,7 @@ export const createBlog = (blog) => {
           setAlert({
             alert: true,
             severity: "success",
-            alertMessage: `Created blog ${blog.title}`,
+            alertMessage: `Posted comment!`,
           })
         );
       })
@@ -29,26 +31,26 @@ export const createBlog = (blog) => {
           setAlert({
             alert: true,
             severity: "error",
-            alertMessage: `Create blog failed: ${err}`,
+            alertMessage: `Post comment failed: ${err}`,
           })
         );
       });
   };
 };
 
-export const deleteBlog = (blogId) => {
+export const deleteComment = (commentID) => {
   return (dispatch, getState, { getFirebase }) => {
     const firestore = getFirebase().firestore();
     firestore
-      .collection("blogs")
-      .doc(blogId)
+      .collection("comments")
+      .doc(commentID)
       .delete()
       .then(() => {
         dispatch(
           setAlert({
             alert: true,
             severity: "success",
-            alertMessage: "Deleted blog!",
+            alertMessage: "Deleted comment!",
           })
         );
       })
@@ -57,26 +59,26 @@ export const deleteBlog = (blogId) => {
           setAlert({
             alert: true,
             severity: "error",
-            alertMessage: `Delete blog failed: ${err}`,
+            alertMessage: `Delete comment failed: ${err}`,
           })
         );
       });
   };
 };
 
-export const updateBlog = (blogId, editedBlog) => {
+export const updateComment = (commentID, editedComment) => {
   return (dispatch, getState, { getFirebase }) => {
     const firestore = getFirebase().firestore();
     firestore
-      .collection("blogs")
-      .doc(blogId)
-      .update({ ...editedBlog, lastChanged: new Date() })
+      .collection("comments")
+      .doc(commentID)
+      .update({ ...editedComment, lastChanged: new Date() })
       .then(() => {
         dispatch(
           setAlert({
             alert: true,
             severity: "success",
-            alertMessage: "Updated blog!",
+            alertMessage: "Updated comment!",
           })
         );
       })
@@ -85,7 +87,7 @@ export const updateBlog = (blogId, editedBlog) => {
           setAlert({
             alert: true,
             severity: "error",
-            alertMessage: `Update blog failed: ${err}`,
+            alertMessage: `Update comment failed: ${err}`,
           })
         );
       });

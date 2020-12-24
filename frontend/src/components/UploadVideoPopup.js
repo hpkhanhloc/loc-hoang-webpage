@@ -11,7 +11,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import { storage } from "../config/fbConfig";
 import { useDispatch } from "react-redux";
-import { createVideo } from "../actions/videoAction";
+import { createVideo } from "../actions/videoActions";
 
 const UploadVideoPopup = () => {
   const [open, setOpen] = useState(false);

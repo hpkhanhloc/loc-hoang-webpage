@@ -1,4 +1,4 @@
-import { setAlert } from "./alertAction";
+import { setAlert } from "./alertActions";
 
 export const createContent = (cvObject) => {
   return (dispatch, getState, { getFirebase }) => {

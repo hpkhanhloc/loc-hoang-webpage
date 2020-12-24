@@ -11,7 +11,7 @@ import {
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import { storage } from "../config/fbConfig";
 import { useDispatch } from "react-redux";
-import { updateUserInformation } from "../actions/authAction";
+import { updateUserInformation } from "../actions/authActions";
 
 const UploadAvatarPopup = (props) => {
   const { userId } = props;

@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import { useStyles } from "../styles";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { logOut } from "../actions/authAction";
+import { logOut } from "../actions/authActions";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const Logout = () => {

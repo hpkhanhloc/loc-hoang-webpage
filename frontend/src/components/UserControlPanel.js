@@ -12,11 +12,11 @@ import {
 } from "@material-ui/core";
 import { Redirect, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setAlert } from "../actions/alertAction";
+import { setAlert } from "../actions/alertActions";
 import { useStyles } from "../styles";
 import { getFirebase } from "react-redux-firebase";
 import UploadAvatarPopup from "./UploadAvatarPopup";
-import { updateUserInformation } from "../actions/authAction";
+import { updateUserInformation } from "../actions/authActions";
 
 const UserControlPanel = (props) => {
   const { credential, profile } = props;

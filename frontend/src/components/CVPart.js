@@ -4,7 +4,7 @@ import { Box, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { useFirestoreConnect } from "react-redux-firebase";
 import TextEditor from "./TextEditor";
-import { updateContent } from "../actions/cvAction";
+import { updateContent } from "../actions/cvActions";
 
 const CVPart = (props) => {
   const { credential, profile, cvPart, theme } = props;

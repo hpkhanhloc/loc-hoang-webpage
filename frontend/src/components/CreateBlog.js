@@ -11,7 +11,7 @@ import {
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createBlog } from "../actions/blogActions";
-import { setAlert } from "../actions/alertAction";
+import { setAlert } from "../actions/alertActions";
 import { useStyles } from "../styles";
 import TextEditor from "./TextEditor";
 import { convertToRaw, EditorState } from "draft-js";

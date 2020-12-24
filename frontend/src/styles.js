@@ -116,6 +116,19 @@ const useStyles = () => {
       disable: false,
       color: theme.palette.primary,
     },
+    commentBox: {
+      marginLeft: 16,
+      padding: theme.spacing(2),
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: 8,
+    },
+    createCommentBox: {
+      backgroundColor: theme.palette.background.paper,
+      borderRadius: 8,
+      padding: theme.spacing(2),
+      display: "flex",
+      flexDirection: "column",
+    },
   }));
 };
 

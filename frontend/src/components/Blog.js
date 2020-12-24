@@ -15,9 +15,11 @@ import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
 import { Redirect } from "react-router-dom";
 import { deleteBlog } from "../actions/blogActions";
 import MUIRichTextEditor from "mui-rte";
+import Comments from "./Comments";
+import CreateComment from "./CreateComment";
 
 const Blog = (props) => {
-  const { credential, profile } = props;
+  const { credential, profile, theme } = props;
   const id = useParams().id;
   useFirestoreConnect([`/blogs/${id}`]);
   const blog = useSelector(
@@ -78,6 +80,8 @@ const Blog = (props) => {
           )}
         </Box>
       </Paper>
+      <Comments credential={credential} blogID={id} theme={theme} />
+      <CreateComment blogID={id} theme={theme} />
     </Container>
   );
 };

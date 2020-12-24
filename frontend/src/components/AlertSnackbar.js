@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Alert, AlertTitle } from "@material-ui/lab";
 import { Snackbar } from "@material-ui/core";
-import { setAlert } from "../actions/alertAction";
+import { setAlert } from "../actions/alertActions";
 
 const AUTOHIDE_DURATION = 10000;
 const ELEVATION = 6;

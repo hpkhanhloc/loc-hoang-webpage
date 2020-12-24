@@ -90,7 +90,7 @@ function App() {
                       />
                     </Route>
                     <Route exact path="/blog/:id">
-                      <Blog credential={auth} profile={profile} />
+                      <Blog credential={auth} profile={profile} theme={theme} />
                     </Route>
                     <Route exact path="/edit/blog/:id">
                       <EditBlog credential={auth} profile={profile} />

@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { useStyles } from "../styles";
 import { useDispatch } from "react-redux";
-import { signUp } from "../actions/authAction";
+import { signUp } from "../actions/authActions";
 
 const SignUp = () => {
   const [open, setOpen] = useState(false);
