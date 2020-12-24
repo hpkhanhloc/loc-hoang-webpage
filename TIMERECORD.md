@@ -52,3 +52,4 @@
 | 13.12.2020 | 0.5  | Initial load select theme base on system reference                                              |
 | 13.12.2020 |  6   | Sudoku game page                                                                                |
 | 14.12.2020 |  7   | Complete function and UI for sudoku game                                                        |
+| 24.12.2020 |  3   | Fix firebase storage fetch video fail (configure)                                               |
