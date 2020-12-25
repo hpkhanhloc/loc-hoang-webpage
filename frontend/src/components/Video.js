@@ -10,11 +10,12 @@ import {
   Button,
   Grid,
 } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFirestoreConnect, isLoaded, isEmpty } from "react-redux-firebase";
 import { Redirect } from "react-router-dom";
 import * as tf from "@tensorflow/tfjs";
 import { storage } from "../config/fbConfig";
+import { setAlert } from "../actions/alertActions";
 
 const MAX_LIMIT_PREDICT_SECOND = 20;
 
@@ -30,6 +31,7 @@ const Video = (props) => {
 
   const ref = useRef(null);
   const canvasRef = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (url) predictIntro(url);
@@ -47,11 +49,22 @@ const Video = (props) => {
   };
 
   const predictIntro = async (url) => {
-    return new Promise(async (resolve) => {
+    return new Promise(async (resolve, reject) => {
       const start = new Date().getTime();
-      console.log("start predict", start);
       const video = document.createElement("video");
-      const videoBlob = await fetch(url).then((res) => res.blob());
+      const videoBlob = await fetch(url)
+        .then((res) => res.blob())
+        .catch((err) =>
+          reject(
+            dispatch(
+              setAlert({
+                alert: true,
+                severity: "error",
+                alertMessage: `Prediction failed because of  ${err}`,
+              })
+            )
+          )
+        );
       const videoURL = URL.createObjectURL(videoBlob);
       const canvas = canvasRef.current;
       let seekResolve;
@@ -97,9 +110,17 @@ const Video = (props) => {
         }
         const end = new Date().getTime();
         video.currentTime = 0;
-        console.log("end predict", end);
-        console.log("Time", end - start);
-        resolve();
+        resolve(
+          dispatch(
+            setAlert({
+              alert: true,
+              severity: "info",
+              alertMessage: `Prediction finnished in ${
+                (end - start) / 1000
+              } seconds`,
+            })
+          )
+        );
       });
       video.src = videoURL;
     });
@@ -148,6 +169,10 @@ const Video = (props) => {
               </Button>
             </Grid>
             <Grid item>
+              <Typography variant="body2">
+                Note: Not working in mobile device. In addtion, low disk space
+                can prevent browser start prediction.
+              </Typography>
               <Typography variant="body2">{`Detected intro frame at second: ${intro} `}</Typography>
               <canvas ref={canvasRef} width={150} height={150}></canvas>
             </Grid>

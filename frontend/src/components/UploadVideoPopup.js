@@ -12,6 +12,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { storage } from "../config/fbConfig";
 import { useDispatch } from "react-redux";
 import { createVideo } from "../actions/videoActions";
+import { setAlert } from "../actions/alertActions";
 
 const UploadVideoPopup = () => {
   const [open, setOpen] = useState(false);
@@ -117,6 +118,7 @@ const UploadVideoPopup = () => {
 
 const uploadVideoToFirebase = (file) => {
   return new Promise((resolve) => {
+    const dispatch = useDispatch();
     const uploadTask = storage.ref(`videos/${file.name}`).put(file);
     uploadTask.on(
       "state_changed",
@@ -136,7 +138,15 @@ const uploadVideoToFirebase = (file) => {
         }
       },
       (error) => {
-        console.log(error);
+        dispatch(
+          setAlert(
+            setAlert({
+              alert: true,
+              severity: "error",
+              alertMessage: error,
+            })
+          )
+        );
       },
       () => {
         storage
@@ -146,7 +156,17 @@ const uploadVideoToFirebase = (file) => {
           .then((url) => {
             resolve(url);
           })
-          .catch((error) => console.log(error));
+          .catch((error) =>
+            dispatch(
+              setAlert(
+                setAlert({
+                  alert: true,
+                  severity: "error",
+                  alertMessage: `Get image link failed: ${error}`,
+                })
+              )
+            )
+          );
       }
     );
   });

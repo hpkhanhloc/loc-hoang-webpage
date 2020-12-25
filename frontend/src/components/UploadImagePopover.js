@@ -11,6 +11,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import AttachFileIcon from "@material-ui/icons/AttachFile";
 import { storage } from "../config/fbConfig";
 import { useStyles } from "../styles";
+import { useDispatch } from "react-redux";
+import { setAlert } from "../actions/alertActions";
 
 const UploadImagePopover = (props) => {
   const [state, setState] = useState({
@@ -95,6 +97,7 @@ const UploadImagePopover = (props) => {
 
 const uploadImageToFirebase = (file) => {
   return new Promise((resolve) => {
+    const dispatch = useDispatch();
     const unique = Math.round(new Date().getTime() / 1000);
     const filename = `${
       file.name.substring(0, file.name.lastIndexOf(".")) || file.name
@@ -118,7 +121,15 @@ const uploadImageToFirebase = (file) => {
         }
       },
       (error) => {
-        console.log(error);
+        dispatch(
+          setAlert(
+            setAlert({
+              alert: true,
+              severity: "error",
+              alertMessage: error,
+            })
+          )
+        );
       },
       () => {
         storage
@@ -128,7 +139,17 @@ const uploadImageToFirebase = (file) => {
           .then((url) => {
             resolve(url);
           })
-          .catch((error) => console.log(error));
+          .catch((error) =>
+            dispatch(
+              setAlert(
+                setAlert({
+                  alert: true,
+                  severity: "error",
+                  alertMessage: `Get image link failed: ${error}`,
+                })
+              )
+            )
+          );
       }
     );
   });

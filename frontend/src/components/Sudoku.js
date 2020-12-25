@@ -123,7 +123,14 @@ const Sudoku = (props) => {
           </Box>
           <Divider style={{ marginTop: 16, marginBottom: 32 }} />
           <Grid container direction="row">
-            <Grid item xs={8} container alignContent="center" justify="center">
+            <Grid
+              item
+              sm={12}
+              md={8}
+              container
+              alignContent="center"
+              justify="center"
+            >
               <Box display="flex" flexDirection="column" border="1px">
                 {sudoku.map((row, rowIndex) => (
                   <Box
@@ -181,7 +188,14 @@ const Sudoku = (props) => {
                 ))}
               </Box>
             </Grid>
-            <Grid item xs={4} container alignItems="center">
+            <Grid
+              item
+              sm={12}
+              md={4}
+              container
+              alignItems="center"
+              justify="center"
+            >
               <Box display="flex" flexDirection="column">
                 <Box m={2}>
                   <Typography variant="h4" align="center">

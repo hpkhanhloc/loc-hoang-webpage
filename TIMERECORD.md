@@ -54,3 +54,6 @@
 | 14.12.2020 |  7   | Complete function and UI for sudoku game                                                        |
 | 24.12.2020 |  3   | Fix firebase storage fetch video fail (configure)                                               |
 | 24.12.2020 |  7   | Support comment in blog                                                                         |
+| 25.12.2020 |  4   | Investigate reason that ML prediction start on-off and take note to the video page;             |
+|            |      | Change some buttons to icon buttons, use alert to inform error if it happens, fix responsive in |
+|            |      | small screen device for sudoku and topbar (when user hasnt login yet).                          |

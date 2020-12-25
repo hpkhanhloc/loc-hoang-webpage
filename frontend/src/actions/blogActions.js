@@ -12,6 +12,8 @@ export const createBlog = (blog) => {
         authorFirstName: profile.firstName,
         authorLastName: profile.lastName,
         authorId: authorId,
+        like: 0,
+        dislike: 0,
         createdAt: new Date(),
         lastChanged: new Date(),
       })

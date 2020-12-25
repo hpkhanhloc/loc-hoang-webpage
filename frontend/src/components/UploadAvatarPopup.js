@@ -12,6 +12,7 @@ import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import { storage } from "../config/fbConfig";
 import { useDispatch } from "react-redux";
 import { updateUserInformation } from "../actions/authActions";
+import { setAlert } from "../actions/alertActions";
 
 const UploadAvatarPopup = (props) => {
   const { userId } = props;
@@ -85,6 +86,7 @@ const UploadAvatarPopup = (props) => {
 
 const uploadAvatarToFirebase = (file) => {
   return new Promise((resolve) => {
+    const dispatch = useDispatch();
     const uploadTask = storage.ref(`avatars/${file.name}`).put(file);
     uploadTask.on(
       "state_changed",
@@ -104,7 +106,15 @@ const uploadAvatarToFirebase = (file) => {
         }
       },
       (error) => {
-        console.log(error);
+        dispatch(
+          setAlert(
+            setAlert({
+              alert: true,
+              severity: "error",
+              alertMessage: error,
+            })
+          )
+        );
       },
       () => {
         storage
@@ -114,7 +124,17 @@ const uploadAvatarToFirebase = (file) => {
           .then((url) => {
             resolve(url);
           })
-          .catch((error) => console.log(error));
+          .catch((error) =>
+            dispatch(
+              setAlert(
+                setAlert({
+                  alert: true,
+                  severity: "error",
+                  alertMessage: `Get image link failed: ${error}`,
+                })
+              )
+            )
+          );
       }
     );
   });

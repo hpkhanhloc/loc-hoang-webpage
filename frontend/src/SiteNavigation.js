@@ -61,7 +61,7 @@ const SiteNavigation = (props) => {
       <CustomAppBar background={theme.toString()}>
         <Toolbar>
           <Grid container justify="space-between" alignItems="center">
-            <Grid item container xs={6} alignItems="center">
+            <Grid item container xs={1} sm={6} alignItems="center">
               <Tooltip title="Navigation menu">
                 <IconButton
                   aria-label="toggle drawer"
@@ -93,7 +93,8 @@ const SiteNavigation = (props) => {
             </Grid>
             <Grid
               item
-              xs={6}
+              xs={11}
+              sm={6}
               container
               spacing={3}
               direction="row"
