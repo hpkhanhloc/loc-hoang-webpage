@@ -57,3 +57,4 @@
 | 25.12.2020 |  4   | Investigate reason that ML prediction start on-off and take note to the video page;             |
 |            |      | Change some buttons to icon buttons, use alert to inform error if it happens, fix responsive in |
 |            |      | small screen device for sudoku and topbar (when user hasnt login yet).                          |
+| 25.12.2020 |  4   | Research and learn Github action, fix vulnerable dependencies                                   |
