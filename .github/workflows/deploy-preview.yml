@@ -8,18 +8,18 @@ jobs:
         node-version: [12.x]
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@master
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: build
+      # - name: Use Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@master
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      - name: Build
         run: |
           cd frontend
           npm ci
           npm run build
         env:
           CI: false
-      - name: deploy_preview
+      - name: Deploy to Preview channel
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
