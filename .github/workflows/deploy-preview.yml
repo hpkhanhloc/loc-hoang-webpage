@@ -1,17 +1,14 @@
 name: Deploy to Preview Channel
-"on": pull_request
+"on":
+  issue_comment:
+    types: [created]
+
 jobs:
   buid_deploy_and_preview:
+    if: contains(github.event.comment.body, '/preview')
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
     steps:
       - uses: actions/checkout@v2
-      # - name: Use Node.js ${{ matrix.node-version }}
-      #   uses: actions/setup-node@master
-      #   with:
-      #     node-version: ${{ matrix.node-version }}
       - name: Build
         run: |
           cd frontend
