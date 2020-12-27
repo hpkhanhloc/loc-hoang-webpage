@@ -1,10 +1,7 @@
 name: Deploy to Preview Channel
 "on":
-<<<<<<< HEAD
   pull_request:
     types: [opened]
-=======
->>>>>>> 4cc99d7... feat: only trigger deploy on specific comment
   issue_comment:
     types: [created]
 
@@ -19,17 +16,6 @@ jobs:
           reaction: rocket
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-<<<<<<< HEAD
-    outputs:
-      triggered: ${{ steps.check.outputs.triggered }}
-  buid_deploy_and_preview:
-    if: contains(github.event.comment.body, '/preview')
-    runs-on: ubuntu-latest
-    needs: deploy-check
-    if: needs.deploy-check.outputs.triggered == 'true'
-    steps:
-      - uses: actions/checkout@v2
-=======
       - name: Github API Request
         if: steps.check.outputs.triggered == 'true'
         id: request
@@ -49,7 +35,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ steps.pr_data.outputs.branch }}
->>>>>>> 34542f6... fix: on comment deploy
       - name: Build
         if: steps.check.outputs.triggered == 'true'
         run: |

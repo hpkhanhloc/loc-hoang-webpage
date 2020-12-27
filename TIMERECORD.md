@@ -59,4 +59,5 @@
 |            |      | small screen device for sudoku and topbar (when user hasnt login yet).                                                               |
 | 25.12.2020 |  4   | Research and learn Github action, fix vulnerable dependencies                                                                        |
 | 26.12.2020 |  10  | Implement github action deploy to preview channel by PR's comment and deploy to live channel on merge master (on preview still fail) |
-|            |      | (commit 395661c and ce52de2, after squash commmits, there are changes in times, both of them should be 26.12.2020)                   |
+|            |      | (commit 395661c and 5c70b31, after squash commmits, there are changes in times, both of them should be 26.12.2020)                   |
+| 27.12.2020 |  5   | Make deploy on comment working, then squash commits                                                                                  |
