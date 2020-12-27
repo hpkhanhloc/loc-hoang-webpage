@@ -29,7 +29,7 @@ const Sudoku = (props) => {
       .map(() => Array(9).fill("."))
   );
   const [solver, setSolver] = useState(null);
-  const [difficulty, setDifficulty] = useState(53);
+  const [difficulty, setDifficulty] = useState(35);
   const [open, setOpen] = useState(false);
   const {
     timer,
@@ -209,7 +209,7 @@ const Sudoku = (props) => {
                     value={difficulty}
                     onChange={handleSelectDifficulty}
                     row
-                    defaultValue={53}
+                    defaultValue={35}
                   >
                     <FormControlLabel
                       value={53}
