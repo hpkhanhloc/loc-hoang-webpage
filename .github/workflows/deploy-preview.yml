@@ -19,7 +19,7 @@ jobs:
       - name: Github API Request
         if: steps.check.outputs.triggered == 'true'
         id: request
-        uses: octokit/request-action@v2.0.0
+        uses: octokit/request-action@v2.0.23
         with:
           route: ${{ github.event.issue.pull_request.url }}
         env:
