@@ -1,0 +1,14 @@
+name: Create release on Pull Request merged
+"on":
+  push:
+    branches:
+      - master
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          package-name: frontend
