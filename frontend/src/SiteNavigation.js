@@ -87,7 +87,7 @@ const SiteNavigation = (props) => {
                   noWrap
                   style={{ marginLeft: 8 }}
                 >
-                  Hello! I'm Loc Hoang
+                  Testing create release!
                 </Typography>
               </Box>
             </Grid>
