@@ -1,8 +1,8 @@
-  name: Create release on Pull Request merged
-# only trigger on pull request closed events
-on:
+
+name: Create release on Pull Request merged
+"on":
   pull_request:
-    types: [ closed ]
+    types: [closed]
 
 jobs:
   create_release:
