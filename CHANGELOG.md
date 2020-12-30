@@ -1,0 +1,57 @@
+# Changelog
+
+## 1.0.0 (2020-12-30)
+
+
+### Features
+
+* add cloud functions to create notification when user signup and create blog ([7ea0104](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/7ea0104522a3bc36d173d62d2b124bdc055c3942))
+* add content for resume page ([3e7bd28](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/3e7bd28ade557ea02240e3ec8a9b78951319b784))
+* add create blog component, add icon into drawer ([edc6c38](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/edc6c38d10b2001597ee2a0c34714014d9adee8f))
+* add delete blog ([a4a0f9a](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/a4a0f9ab2f476c8935fcec900a66b4e043dafd73))
+* add login dialog, setup basic redux ([60902de](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/60902dec6f0d61e9dc313126f81b52ee533b0af4))
+* add logout function and splash screen ([588e394](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/588e394002ef69a42518cd48f586a9ad5bd0b44a))
+* add opencvjs, tensorflowjs ([0310b20](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/0310b20af464fde15b121aefc6b732c87c1cd31b))
+* add rich text editor with upload image function ([67fb32f](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/67fb32f93a920d26a95b521f5c4ab99b938dc82b))
+* add signup user function with firebase ([1ac1819](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/1ac1819663c4206b2728d05ae99dc11614bcd086))
+* add signup, refactor login ([e70f4eb](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/e70f4ebdbc6120741ca13a9b6575a225463a38c0))
+* add thunk, add create blog action ([091a9b6](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/091a9b679afcd2a7a27c56465ad1aa7b04332844))
+* add update blog ([08fd548](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/08fd548b54ee5e3a7396dcf5c1b2ff6b3f002050))
+* add upload video dialog ([a2ca9e3](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/a2ca9e3363bd0e97339613e3fe116c4ee3ba1d0b))
+* add userinfo in navigation bar ([205d985](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/205d98526fb953b755c37947e6ea658b8e4c1d77))
+* complete functions and UI for sudoku game ([629d0d2](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/629d0d2210fe8a724bc246a24166ce9fb7411888))
+* connect firebase, firestore with app ([c19d7e5](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/c19d7e5b8090adc268569afe8a0c578af6f67223))
+* create and config firebase ([9592487](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/95924877251f3f2e2b4210e93323c2ff48989358))
+* create react app with material ui ([e87ce5d](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/e87ce5da7d8bf3d835fbf0c1eb08620ac0e06f4d))
+* create release on merge PR ([686fe9b](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/686fe9b066d616863e665f58b465cccec87dd4ef))
+* create sudoku game page ([e202b50](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/e202b50e8983f12077258841080a4b5bcecb2f82))
+* create user information page ([31baf7d](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/31baf7d1cf1ade3188dae1dd7d9a020e0f3b5af6))
+* create videos and video page ([0f1e965](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/0f1e965b5b799d49c1b20ce4e6c8be0878470e9b))
+* deploy with github action ([395661c](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/395661c1e433d5b13e66de9aaa736b4330ae7431))
+* dummy blog data, show blog summary, add blog detail page ([f00131a](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/f00131a4b45b2b56d41da820084e786f5426f620))
+* extract frame from video and predict intro ([7ed8e55](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/7ed8e5540b919aae2e573df65afbdb329204bbd0))
+* import machine learning model into video component ([ca7a30a](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/ca7a30aafb0abe0b917c4fbd60318247cb7e7e1a))
+* initial load select theme base on system reference ([b360160](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/b3601606c29855f189bb9260243999efe4a5ae68))
+* login connect with firebase ([61cba12](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/61cba1240af99e6a9a5249783469f8a511a9af0d))
+* only trigger deploy on specific comment ([5c70b31](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/5c70b316098ed1403a8a51ac8efba091c5c00e26))
+* prepare machine learning model ([e7011de](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/e7011de0516e65c3b53740f093205268c3ed51bf))
+* protect route from un-authentication user ([6118f34](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/6118f34476ede3aec9dfc4aa04d3ad6defa431df))
+* remake appbar, navigation with responsive design, change font, theme color ([507f199](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/507f1993c4ef4ef70e6701e669424011d5e5218d))
+* set firestore rule, grant permission for user ([dcf1403](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/dcf14037d1186321cbb4dbfd7f21ff27dd85d8ff))
+* support alert for all activities ([50fa47e](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/50fa47e66a30703b3a51b02635cd7bb5188a552a))
+* support comment in blog ([b3be0ab](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/b3be0abdc428675ff118c64a9c952433f8b5117b))
+* support resume composing ([6f7c64d](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/6f7c64dd53cfb910407bda8eac986f2117bc902a))
+* support toggle light and dark theme ([d419ea1](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/d419ea1d9feced0cb75d4e929223b8143ab0696f))
+* support update user information, avatar ([eec2167](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/eec2167749462ef9e39325728779ae3b19b42443))
+* update firestore security rule, connect firebase cloud function ([1c81bd9](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/1c81bd9a022c4a8e3f5e99e2335a0af4c49d624b))
+
+
+### Bug Fixes
+
+* detail blog crash when reload page ([d6ca4ae](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/d6ca4aedea7b51139f78aeb2ae0d0d30344bffdc))
+* edit time record link in README ([441c275](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/441c2754a59a99c5b1b3d07b1c2e15017387b191))
+* extract and predict intro run on off ([1fde2cc](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/1fde2cc9ca8b3a189960b6bfa679437d797953cd))
+* fetch video from storage for ML model fail ([865ea6d](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/865ea6d382a6ca32a3b02762da626f648d49d71b))
+* git ignore ([1690787](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/1690787e6c0c9629c2b29a8f0f970c4ffa0aa0c6))
+* make create release works ([514e121](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/514e121cc26f89b2c2b42dd20a7e5c7e0bb41cc3))
+* make only trigger deploy on specific comment working ([e7d30fb](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/e7d30fb47addd42e8950b7a0c694b10d89b00cf3))
