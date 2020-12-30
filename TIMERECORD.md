@@ -61,3 +61,5 @@
 | 26.12.2020 |  10  | Implement github action deploy to preview channel by PR's comment and deploy to live channel on merge master (on preview still fail) |
 |            |      | (commit 395661c and 5c70b31, after squash commmits, there are changes in times, both of them should be 26.12.2020)                   |
 | 27.12.2020 |  5   | Make deploy on comment working, then squash commits                                                                                  |
+| 28.12.2020 |  3   | Implement github action create release on master branch update                                                                       |
+| 30.12.2020 | 3.5  | Fix github action create release                                                                                                     |
