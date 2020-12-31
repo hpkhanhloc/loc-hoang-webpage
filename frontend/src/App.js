@@ -99,7 +99,7 @@ function App() {
                       <Videos credential={auth} profile={profile} />
                     </Route>
                     <Route exact path="/video/:id">
-                      <Video credential={auth} />
+                      <Video credential={auth} profile={profile} />
                     </Route>
                     <Route exact path="/user/:id">
                       <UserControlPanel credential={auth} profile={profile} />
