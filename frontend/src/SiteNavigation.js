@@ -155,15 +155,17 @@ const SiteNavigation = (props) => {
           />
           {credential.uid && (
             <>
-              <ListItemLink
-                index={2}
-                to="/videos"
-                primary="Machine Learning Video Player"
-                icon={<MovieFilterIcon />}
-                selectedIndex={selectedIndex}
-                setSelectedIndex={setSelectedIndex}
-                handleDrawerClose={handleDrawerClose}
-              />
+              {profile.role === "owner" && (
+                <ListItemLink
+                  index={2}
+                  to="/videos"
+                  primary="Machine Learning Video Player"
+                  icon={<MovieFilterIcon />}
+                  selectedIndex={selectedIndex}
+                  setSelectedIndex={setSelectedIndex}
+                  handleDrawerClose={handleDrawerClose}
+                />
+              )}
               <ListItemLink
                 index={3}
                 to="/blogs"
