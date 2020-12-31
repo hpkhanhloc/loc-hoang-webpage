@@ -2,6 +2,8 @@
 
 # This is also Full Stack Web Application Development Exercise 2020-2021
 
+Webpage: [https://loc-hoang-webpage.web.app/](https://loc-hoang-webpage.web.app/)
+
 Target of this project is building a personal website that has some pages for example my CV - use for job interview and personal blog that can post articles, in addition practice new technologies like Machine Learning in browser side, Firebsae function, some games such as Sudoku. The project support CI/CD based on Firebase and Github actions.
 
 Technologies:
@@ -18,10 +20,12 @@ Technologies:
 Features:
 
 - Theme:
+
   - Support light and dark theme
   - In initial loading, select theme base on user preference (browser), then user can set it in topbar. It is stored in local storage.
 
 - User feature and rights:
+
   - SignUp as default role `viewer`, possible set other roles via Firebase
   - As guest only can view `CV` and play `Sudoku`
   - User logged in can view same as guest, plus `Blog`
@@ -30,12 +34,14 @@ Features:
   - Logout by clicking on top right avatar, then drop down menu
 
 - CV page:
+
   - Only `owner` can create, update, edit, delete, and add paragraph
   - Support rich text editor
   - Stored in FirebaseStore
   - Everyone can see
 
 - Blog and Comments:
+
   - Only `owner` can see `Create Blog` and compose
   - Support rich text editor for blog and comment composing
   - Support upload image to Fire Storage, then return URL and display
@@ -45,16 +51,19 @@ Features:
   - `Owner` has all rights same as user, in addtion can edit blog.
 
 - Machine Learning Videos Player:
+
   - The main purpose is for study and practice apply Machine Learning. Therefore, this will be limited, only `owner` can view, and only upload few of eposides to the page (will remove soon)
   - Use Larva cartoon season 1 as video data (105 eposides). Trained and valid with first 75 eposides, the rest is for testing.
   - ML model will predict the time that real content should start (skip intro)
   - ML model is embedded and will be loaded, then start prediction when select a specific video. After prediction it will return the second, then skip button is available.
 
 - Sudoku:
+
   - Make sudoku game with has timer, hint, resume and pause function
   - Main purpose is practice Javascript logical and display (CSS/Material UI)
 
 - Notification:
+
   - Use Firebase function to implement
   - It will automatically create new notification when there is new user or new blog.
   - Notifications are store in FirebaseStore
