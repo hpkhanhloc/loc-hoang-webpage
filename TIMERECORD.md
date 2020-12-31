@@ -63,3 +63,4 @@
 | 27.12.2020 |  5   | Make deploy on comment working, then squash commits                                                                                  |
 | 28.12.2020 |  3   | Implement github action create release on master branch update                                                                       |
 | 30.12.2020 | 3.5  | Fix github action create release                                                                                                     |
+| 31.12.2020 |  2   | Edit user right for ML video page, documentation, update README and first deploy                                                     |
