@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
   Button,
@@ -13,13 +13,23 @@ import {
 import { useFirestoreConnect } from "react-redux-firebase";
 import { Redirect } from "react-router-dom";
 import UploadVideoPopup from "./UploadVideoPopup";
+import { setAlert } from "../actions/alertActions";
 
 const Videos = (props) => {
   const { credential, profile } = props;
   useFirestoreConnect([{ collection: "videos" }]);
   const videos = useSelector((state) => state.firestore.ordered.videos);
+  const dispatch = useDispatch();
 
-  if (!credential.uid) {
+  if (!credential.uid || profile.role !== "owner") {
+    dispatch(
+      setAlert({
+        alert: true,
+        severity: "warning",
+        alertMessage:
+          "Access denied! You have not logged in or have not permission to view this content.",
+      })
+    );
     return <Redirect to="/" />;
   }
 
