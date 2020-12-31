@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.2.1](https://www.github.com/hpkhanhloc/loc-hoang-webpage/compare/v1.2.0...v1.2.1) (2020-12-31)
+
+
+### Bug Fixes
+
+* check commit before deploy ([a5705bb](https://www.github.com/hpkhanhloc/loc-hoang-webpage/commit/a5705bbb63013f44c15a741d9d4353637e80cb65))
+
 ## [1.2.0](https://www.github.com/hpkhanhloc/loc-hoang-webpage/compare/v1.1.0...v1.2.0) (2020-12-31)
 
 
