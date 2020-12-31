@@ -7,20 +7,13 @@ jobs:
   create_release:
     runs-on: ubuntu-latest
     steps:
-      - uses: GoogleCloudPlatform/release-please-action@v2.12.3
+      - uses: GoogleCloudPlatform/release-please-action@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           release-type: simple
-          package-name: frontend
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Create release
-        uses: GoogleCloudPlatform/release-please-action@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: simple
-          package-name: frontend
       - uses: actions/checkout@v2
       - name: Build
         run: |
