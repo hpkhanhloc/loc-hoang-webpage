@@ -20,7 +20,7 @@ import { setAlert } from "../actions/alertActions";
 const MAX_LIMIT_PREDICT_SECOND = 20;
 
 const Video = (props) => {
-  const { credential } = props;
+  const { credential, profile } = props;
   const id = useParams().id;
   useFirestoreConnect([`/videos/${id}`]);
   const video = useSelector(
@@ -130,7 +130,15 @@ const Video = (props) => {
     loadURL();
   }
 
-  if (!credential.uid) {
+  if (!credential.uid || profile.role !== "owner") {
+    dispatch(
+      setAlert({
+        alert: true,
+        severity: "warning",
+        alertMessage:
+          "Access denied! You have not logged in or have not permission to view this content.",
+      })
+    );
     return <Redirect to="/" />;
   }
 
